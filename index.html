@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HF Cable Toolchain — Sreeram Anil</title>
+<meta name="description" content="Seven engineering packages that take a high-frequency cable from a raw network-analyser measurement to a predicted automotive Ethernet link: measurement evaluation, laboratory automation, impedance reconstruction, production analytics, multi-site metrology and a full-link digital twin.">
+<meta name="author" content="Sreeram Anil">
+<meta property="og:title" content="HF Cable Toolchain — Sreeram Anil">
+<meta property="og:description" content="From a raw measurement to a link that has not been built yet. Seven packages, 143 tests, 90 pages of technical reports.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M6 20c4-9 6-9 10 0s6 9 10 0' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+        <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>HF Cable Toolchain<br><span class="brand-sub">Sreeram Anil</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#pipeline">Architecture</a>
+      <a href="#projects">Projects</a>
+      <a href="system.html">The whole system</a>
+      <a href="#network">Network</a>
+      <a href="#results">Results</a>
+      <a href="#reports">Reports</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/anilram30" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.6 4.7 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="gh-label">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div id="top"></div>
+
+<!-- ======================================================= hero -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>High-frequency cable engineering</span>
+        <h1>From a raw measurement to a link that <span class="em">has not been built yet</span>.</h1>
+        <p class="hero-lede">
+          Seven engineering packages that take an automotive Ethernet cable all the way through:
+          measure it, prove the measurement can be trusted, understand what the factory did to it,
+          compare laboratories across three countries, and predict whether a harness will pass
+          the standard months before the first sample exists.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#projects">
+            Explore the toolchain
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#reports">Read the technical reports</a>
+        </div>
+        <a class="hero-verified" href="system.html" title="All seven packages verified end-to-end through the hub — follow one sample through the whole system">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <b>7&thinsp;/&thinsp;7</b>&nbsp;demonstrations verified end-to-end
+        </a>
+      </div>
+      <figure class="hero-art">
+        <div class="hero-art-bar">
+          <span class="lamp"></span><span class="lamp"></span><span class="lamp"></span>
+          <span style="margin-left:6px">linktwin eye examples/camera-link.toml</span>
+        </div>
+        <img src="assets/img/eye-diagram.png" width="1400" height="924"
+             alt="Four panels: the pulse response with its sampled cursors, worst-case eye height against sampling phase, and the simulated raw and equalised eye diagrams for a 1000BASE-T1 link.">
+        <figcaption class="hero-art-cap">
+          The predicted eye at the receiver of a 12&nbsp;m harness at 85&nbsp;°C. Closed without equalisation,
+          309&nbsp;mV open with it — computed before the harness exists.
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="numbers"><div class="numbers-row"><div class="stat"><div class="stat-n">7</div><div class="stat-l">Packages</div></div><div class="stat"><div class="stat-n">16.6k</div><div class="stat-l">Lines of code</div></div><div class="stat"><div class="stat-n">143</div><div class="stat-l">Tests in CI</div></div><div class="stat"><div class="stat-n">90</div><div class="stat-l">Report pages</div></div><div class="stat"><div class="stat-n">152</div><div class="stat-l">References cited</div></div><div class="stat"><div class="stat-n">10</div><div class="stat-l">Repositories</div></div></div><div class="numbers-label"><b>The toolchain</b> — code, tests and documentation</div><div class="numbers-row"><div class="stat"><div class="stat-n">4</div><div class="stat-l">Laboratories</div></div><div class="stat"><div class="stat-n">200</div><div class="stat-l">Measurement jobs</div></div><div class="stat"><div class="stat-n">3,610</div><div class="stat-l">Results</div></div><div class="stat"><div class="stat-n">40</div><div class="stat-l">Calibrations</div></div><div class="stat"><div class="stat-n">48</div><div class="stat-l">Verifications</div></div><div class="stat"><div class="stat-n">10</div><div class="stat-l">Round-robin rounds</div></div></div><div class="numbers-label"><b>The simulated network it runs</b> — every number generated by the code above, traceable to a sealed archive · all measurement data is synthetic, by design</div></div>
+  </div>
+</header>
+
+<!-- ======================================================= pipeline -->
+<section id="pipeline" class="tint">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Architecture</div>
+      <h2>One pipeline, seven independent packages</h2>
+      <p>
+        Every package stands alone and is installable on its own, but each one consumes what the
+        previous ones produce. The arrows are real dependencies, not a diagram drawn after the fact.
+      </p>
+    </div>
+    <div class="pipe"><svg viewBox="0 0 970 424" role="img" aria-label="Architecture: a cable sample and instruments feed labauto, which feeds labplatform and zprofile; extrusion-line records feed cableanalytics; labplatform, zprofile and cableanalytics all feed linktwin, which produces the design decision. shieldeval is an independent branch fed by shield measurements. cablecheck is the foundation beneath every package."><defs><marker id="ah" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--border-strong)"/></marker></defs><text x="14" y="16" font-size="9.5" font-weight="700" fill="var(--text-3)" letter-spacing="1.3">INPUT</text><text x="232" y="16" font-size="9.5" font-weight="700" fill="var(--text-3)" letter-spacing="1.3">MEASURE & TRUST</text><text x="480" y="16" font-size="9.5" font-weight="700" fill="var(--text-3)" letter-spacing="1.3">ANALYSE</text><text x="724" y="16" font-size="9.5" font-weight="700" fill="var(--text-3)" letter-spacing="1.3">PREDICT</text><rect x="14" y="44" width="176" height="52" rx="8" fill="var(--surface-2)" stroke="var(--border)" stroke-dasharray="4 3"/><text x="102.0" y="63.0" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text-2)">Cable sample</text><text x="102.0" y="79.0" text-anchor="middle" font-size="10" fill="var(--text-3)">VNA, chamber, DMM</text><a href="projects/labauto.html" aria-label="Open the labauto case study"><rect x="232" y="34" width="214" height="76" rx="9" fill="var(--bg)" stroke="var(--border-strong)"/><rect x="245" y="46" width="22" height="22" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".38"/><text x="256" y="57.5" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="var(--accent)">B</text><text x="276" y="57.5" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--text)" font-family="var(--mono)">labauto</text><text x="246" y="80" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">calibration gates, validation,</text><text x="246" y="95" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">sealed traceable archive</text></a><a href="projects/labplatform.html" aria-label="Open the labplatform case study"><rect x="480" y="34" width="214" height="76" rx="9" fill="var(--bg)" stroke="var(--border-strong)"/><rect x="493" y="46" width="22" height="22" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".38"/><text x="504" y="57.5" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="var(--accent)">F</text><text x="524" y="57.5" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--text)" font-family="var(--mono)">labplatform</text><text x="494" y="80" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">uncertainty budgets, site</text><text x="494" y="95" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">comparison, drift detection</text></a><a href="projects/zprofile.html" aria-label="Open the zprofile case study"><rect x="480" y="128" width="214" height="58" rx="9" fill="var(--bg)" stroke="var(--border-strong)"/><rect x="493" y="140" width="22" height="22" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".38"/><text x="504" y="151.5" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="var(--accent)">D</text><text x="524" y="151.5" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--text)" font-family="var(--mono)">zprofile</text><text x="494" y="174" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">impedance against position</text></a><rect x="232" y="206" width="214" height="52" rx="8" fill="var(--surface-2)" stroke="var(--border)" stroke-dasharray="4 3"/><text x="339.0" y="225.0" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text-2)">Extrusion-line records</text><text x="339.0" y="241.0" text-anchor="middle" font-size="10" fill="var(--text-3)">line speed, gauge, material</text><a href="projects/cableanalytics.html" aria-label="Open the cableanalytics case study"><rect x="480" y="204" width="214" height="58" rx="9" fill="var(--bg)" stroke="var(--border-strong)"/><rect x="493" y="216" width="22" height="22" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".38"/><text x="504" y="227.5" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="var(--accent)">E</text><text x="524" y="227.5" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--text)" font-family="var(--mono)">cableanalytics</text><text x="494" y="250" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">production → performance</text></a><a href="projects/linktwin.html" aria-label="Open the linktwin case study"><rect x="724" y="58" width="232" height="146" rx="9" fill="var(--bg)" stroke="var(--border-strong)"/><rect x="737" y="70" width="22" height="22" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".38"/><text x="748" y="81.5" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="var(--accent)">G</text><text x="768" y="81.5" dominant-baseline="central" font-size="14" font-weight="600" fill="var(--text)" font-family="var(--mono)">linktwin</text><text x="738" y="104" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">full-link digital twin</text><text x="738" y="134" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">pass or fail · eye at the receiver</text><text x="738" y="149" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">maximum reach · connector budget</text><text x="738" y="164" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">probability of passing</text></a><rect x="14" y="288" width="176" height="50" rx="8" fill="var(--surface-2)" stroke="var(--border)" stroke-dasharray="4 3"/><text x="102.0" y="306.0" text-anchor="middle" font-size="11" font-weight="600" fill="var(--text-2)">Shield measurements</text><text x="102.0" y="322.0" text-anchor="middle" font-size="10" fill="var(--text-3)">triaxial, line injection</text><a href="projects/shieldeval.html" aria-label="Open the shieldeval case study"><rect x="232" y="284" width="214" height="58" rx="9" fill="var(--bg)" stroke="var(--border-strong)"/><rect x="245" y="296" width="22" height="22" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".38"/><text x="256" y="307.5" text-anchor="middle" dominant-baseline="central" font-size="11.5" font-weight="700" fill="var(--accent)">C</text><text x="276" y="307.5" dominant-baseline="central" font-size="13" font-weight="600" fill="var(--text)" font-family="var(--mono)">shieldeval</text><text x="246" y="330" dominant-baseline="central" font-size="10.5" fill="var(--text-3)">byte-exact legacy + modern method</text></a><text x="462" y="313" dominant-baseline="central" font-size="10.5" fill="var(--text-3)" font-style="italic">independent of the main chain</text><path d="M190 70 L228 72" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><path d="M446 72 L476 72" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><path d="M446 92 C480 92 442 152 476 152" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><path d="M446 232 L476 233" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><path d="M190 313 L228 313" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><path d="M694 72 C728 72 686 105 720 105" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><path d="M694 157 C728 157 686 134 720 134" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><path d="M694 233 C728 233 686 166 720 166" stroke="var(--border-strong)" stroke-width="1.6" fill="none" marker-end="url(#ah)"/><a href="projects/cablecheck.html" aria-label="Open the cablecheck case study"><rect x="14" y="360" width="942" height="52" rx="10" fill="var(--accent-soft)" stroke="var(--accent)" stroke-opacity=".4"/><rect x="27" y="374" width="24" height="24" rx="7" fill="var(--accent)"/><text x="39" y="386.5" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#fff">A</text><text x="61" y="379" dominant-baseline="central" font-size="13.5" font-weight="600" fill="var(--text)" font-family="var(--mono)">cablecheck</text><text x="61" y="397" dominant-baseline="central" font-size="10.5" fill="var(--text-2)">the foundation every package above is built on — network algebra, fixture de-embedding, mixed-mode decomposition, standards limit lines, verdicts</text></a></svg></div>
+    <p class="pipe-hint">Every box is a page — click any package for the full engineering case study.</p>
+  </div>
+</section>
+
+<!-- ======================================================= projects -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">The toolchain</div>
+      <h2>Seven projects, A through G</h2>
+      <p>
+        Each is a working package with its own test suite, command-line interface and technical
+        report stating the mathematics it implements and the limits of what it can claim. Every card
+        opens a full case study — and <a href="system.html">one page follows a single sample through
+        all seven</a>.
+      </p>
+    </div>
+    <div class="cards"><article class="card">
+  <div class="card-top">
+    <div class="card-letter">A</div>
+    <div><h3>cablecheck</h3><div class="card-title">Measurement to engineering verdict</div></div>
+  </div>
+  <div class="card-thumb"><img src="assets/img/p/a-margins.png" loading="lazy" alt=""></div>
+  <p>Removes the fixture, converts raw four-port data into the quantities engineers specify, and issues a verdict against the standard with the margin and the frequency where it was worst.</p>
+  <div class="card-io"><div><b>Takes</b>Touchstone / VNA CSV, fixture description</div><div><b>Produces</b>verdict · margins · IL RL LCL NEXT FEXT delay NVP Z(x) · report · database row</div></div>
+  <div class="card-actions">
+    <a class="card-link" href="projects/cablecheck.html">Explore the case study &rarr;</a>
+    <a class="ghost" href="https://github.com/anilram30/cablecheck" rel="noopener">GitHub</a>
+    <a class="ghost" href="reports/cablecheck.pdf" style="margin-left:auto">13-pp report</a>
+  </div>
+</article>
+<article class="card">
+  <div class="card-top">
+    <div class="card-letter">B</div>
+    <div><h3>labauto</h3><div class="card-title">The laboratory as a programmable system</div></div>
+  </div>
+  <div class="card-thumb"><img src="assets/img/p/b-states.png" loading="lazy" alt=""></div>
+  <p>Knows what measurement is being performed, what a valid calibration is, which checks must pass, and whether a result is trustworthy enough to enter the database at all.</p>
+  <div class="card-io"><div><b>Takes</b>barcode · procedure · instruments (real or simulated)</div><div><b>Produces</b>sealed hashed archive · trust decision · database, refusals included</div></div>
+  <div class="card-actions">
+    <a class="card-link" href="projects/labauto.html">Explore the case study &rarr;</a>
+    <a class="ghost" href="https://github.com/anilram30/labauto" rel="noopener">GitHub</a>
+    <a class="ghost" href="reports/labauto.pdf" style="margin-left:auto">12-pp report</a>
+  </div>
+</article>
+<article class="card">
+  <div class="card-top">
+    <div class="card-letter">C</div>
+    <div><h3>shieldeval</h3><div class="card-title">Legacy algorithm reconstruction</div></div>
+  </div>
+  <div class="card-thumb"><img src="assets/img/p/c-braidfoil.png" loading="lazy" alt=""></div>
+  <p>Reproduces a legacy-style shielding tool exactly so old results stay reproducible, implements the modern method beside it, and quantifies the cost of migrating.</p>
+  <div class="card-io"><div><b>Takes</b>archived raw triaxial / line-injection files</div><div><b>Produces</b>Z_T and a_S by legacy and modern method · quantified difference</div></div>
+  <div class="card-actions">
+    <a class="card-link" href="projects/shieldeval.html">Explore the case study &rarr;</a>
+    <a class="ghost" href="https://github.com/anilram30/shieldeval" rel="noopener">GitHub</a>
+    <a class="ghost" href="reports/shieldeval.pdf" style="margin-left:auto">10-pp report</a>
+  </div>
+</article>
+<article class="card">
+  <div class="card-top">
+    <div class="card-letter">D</div>
+    <div><h3>zprofile</h3><div class="card-title">Impedance profile reconstruction</div></div>
+  </div>
+  <div class="card-thumb"><img src="assets/img/p/d-defect.png" loading="lazy" alt=""></div>
+  <p>Turns a frequency-domain reflection into characteristic impedance metre by metre, so a defect becomes a position rather than a bump on a graph.</p>
+  <div class="card-io"><div><b>Takes</b>S_dd11(f), S_dd21(f), length</div><div><b>Produces</b>Z(x) metre by metre · ripple · defect position · sensitivity budget</div></div>
+  <div class="card-actions">
+    <a class="card-link" href="projects/zprofile.html">Explore the case study &rarr;</a>
+    <a class="ghost" href="https://github.com/anilram30/zprofile" rel="noopener">GitHub</a>
+    <a class="ghost" href="reports/zprofile.pdf" style="margin-left:auto">17-pp report</a>
+  </div>
+</article>
+<article class="card">
+  <div class="card-top">
+    <div class="card-letter">E</div>
+    <div><h3>cableanalytics</h3><div class="card-title">Production to physics correlation</div></div>
+  </div>
+  <div class="card-thumb"><img src="assets/img/p/e-bragg.png" loading="lazy" alt=""></div>
+  <p>Correlates extrusion-line parameters against measured high-frequency behaviour, and predicts loss and impedance from a production record alone.</p>
+  <div class="card-io"><div><b>Takes</b>extrusion records · gauge logs · measured losses</div><div><b>Produces</b>predicted a, b, Z with 90 % intervals · derating · ripple attribution</div></div>
+  <div class="card-actions">
+    <a class="card-link" href="projects/cableanalytics.html">Explore the case study &rarr;</a>
+    <a class="ghost" href="https://github.com/anilram30/cableanalytics" rel="noopener">GitHub</a>
+    <a class="ghost" href="reports/cableanalytics.pdf" style="margin-left:auto">8-pp report</a>
+  </div>
+</article>
+<article class="card">
+  <div class="card-top">
+    <div class="card-letter">F</div>
+    <div><h3>labplatform</h3><div class="card-title">Multi-site metrology platform</div></div>
+  </div>
+  <div class="card-thumb"><img src="assets/img/p/f-budget.png" loading="lazy" alt=""></div>
+  <p>Gives every result a full uncertainty budget, so a 0.8 dB disagreement against 1.2 dB of uncertainty is reported as not distinguishable rather than as a fault.</p>
+  <div class="card-io"><div><b>Takes</b>sealed archives from every site</div><div><b>Produces</b>uncertainty budgets · E_n · R&R · drift alerts · trust cards</div></div>
+  <div class="card-actions">
+    <a class="card-link" href="projects/labplatform.html">Explore the case study &rarr;</a>
+    <a class="ghost" href="https://github.com/anilram30/labplatform" rel="noopener">GitHub</a>
+    <a class="ghost" href="reports/labplatform.pdf" style="margin-left:auto">11-pp report</a>
+  </div>
+</article>
+<article class="card card-wide">
+  <div class="card-body">
+    <div class="card-top">
+      <div class="card-letter">G</div>
+      <div><h3>linktwin</h3><div class="card-title">Predictive digital twin</div></div>
+      <span class="card-flag">Capstone</span>
+    </div>
+    <p>Assembles a virtual link from measured, archived or predicted cable data and answers whether it passes, how far it reaches and what the receiver sees.</p>
+    <p style="font-size:.9rem">
+      From a single noisy 10&nbsp;m measurement it predicts 3 to 25&nbsp;m at 23 to 125&nbsp;°C to within
+      <b>0.1&nbsp;dB</b>, extrapolates an octave past the band to within <b>0.04&nbsp;dB</b>, and its
+      worst-case eye is a tight lower bound on a bit-level simulation — 420 against 421&nbsp;mV.
+    </p>
+    <div class="card-actions">
+      <a class="card-link" href="projects/linktwin.html">Explore the case study &rarr;</a>
+      <a class="ghost" href="https://github.com/anilram30/linktwin" rel="noopener">GitHub</a>
+      <a class="ghost" href="reports/linktwin.pdf" style="margin-left:auto">19-pp report</a>
+    </div>
+  </div>
+  <div class="shot-img">
+    <img src="assets/img/montecarlo.png" width="1400" height="504" loading="lazy"
+         alt="Monte Carlo distributions of the link margin and the equalised eye height over 200 draws of the tolerances.">
+  </div>
+</article></div>
+  </div>
+</section>
+
+<!-- ======================================================= network -->
+<section id="network" class="tint">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Multi-site metrology</div>
+      <h2>Four laboratories, three countries, one reference</h2>
+      <p>
+        When several sites measure the same product, the question is not what each one measured but
+        whether they agree — and how you would know. Every result carries a full uncertainty budget,
+        so a difference is only called a problem when it is larger than the uncertainty of that difference.
+      </p>
+    </div>
+    <div class="map-layout">
+      <div class="map-panel"><svg class="worldmap" viewBox="0 0 1000 449" role="img" aria-label="Dot-matrix map of Europe and Asia marking four measurement sites: Roth and Kitzingen in Germany, Jelenia Gora in Poland and Changzhou in China."><g class="wm-land" stroke-width="2.45" stroke-linecap="round" stroke-dasharray="0 6.410"><line x1="153.8" y1="448.7" x2="378.2" y2="448.7"/><line x1="724.4" y1="448.7" x2="737.2" y2="448.7"/><line x1="750.0" y1="448.7" x2="756.4" y2="448.7"/><line x1="807.7" y1="448.7" x2="839.7" y2="448.7"/><line x1="153.8" y1="442.3" x2="384.6" y2="442.3"/><line x1="717.9" y1="442.3" x2="724.4" y2="442.3"/><line x1="743.6" y1="442.3" x2="750.0" y2="442.3"/><line x1="814.1" y1="442.3" x2="839.7" y2="442.3"/><line x1="153.8" y1="435.9" x2="391.0" y2="435.9"/><line x1="711.5" y1="435.9" x2="717.9" y2="435.9"/><line x1="737.2" y1="435.9" x2="750.0" y2="435.9"/><line x1="782.1" y1="435.9" x2="782.1" y2="435.9"/><line x1="820.5" y1="435.9" x2="839.7" y2="435.9"/><line x1="32.1" y1="429.5" x2="51.3" y2="429.5"/><line x1="76.9" y1="429.5" x2="76.9" y2="429.5"/><line x1="128.2" y1="429.5" x2="397.4" y2="429.5"/><line x1="705.1" y1="429.5" x2="711.5" y2="429.5"/><line x1="737.2" y1="429.5" x2="750.0" y2="429.5"/><line x1="826.9" y1="429.5" x2="846.2" y2="429.5"/><line x1="859.0" y1="429.5" x2="859.0" y2="429.5"/><line x1="25.6" y1="423.1" x2="96.2" y2="423.1"/><line x1="121.8" y1="423.1" x2="397.4" y2="423.1"/><line x1="737.2" y1="423.1" x2="743.6" y2="423.1"/><line x1="839.7" y1="423.1" x2="846.2" y2="423.1"/><line x1="865.4" y1="423.1" x2="865.4" y2="423.1"/><line x1="891.0" y1="423.1" x2="891.0" y2="423.1"/><line x1="19.2" y1="416.7" x2="403.8" y2="416.7"/><line x1="602.6" y1="416.7" x2="609.0" y2="416.7"/><line x1="730.8" y1="416.7" x2="730.8" y2="416.7"/><line x1="871.8" y1="416.7" x2="871.8" y2="416.7"/><line x1="884.6" y1="416.7" x2="897.4" y2="416.7"/><line x1="12.8" y1="410.3" x2="403.8" y2="410.3"/><line x1="602.6" y1="410.3" x2="609.0" y2="410.3"/><line x1="724.4" y1="410.3" x2="730.8" y2="410.3"/><line x1="839.7" y1="410.3" x2="839.7" y2="410.3"/><line x1="878.2" y1="410.3" x2="897.4" y2="410.3"/><line x1="6.4" y1="403.8" x2="410.3" y2="403.8"/><line x1="583.3" y1="403.8" x2="589.7" y2="403.8"/><line x1="724.4" y1="403.8" x2="724.4" y2="403.8"/><line x1="762.8" y1="403.8" x2="762.8" y2="403.8"/><line x1="846.2" y1="403.8" x2="846.2" y2="403.8"/><line x1="897.4" y1="403.8" x2="897.4" y2="403.8"/><line x1="0.0" y1="397.4" x2="410.3" y2="397.4"/><line x1="583.3" y1="397.4" x2="596.2" y2="397.4"/><line x1="724.4" y1="397.4" x2="724.4" y2="397.4"/><line x1="769.2" y1="397.4" x2="769.2" y2="397.4"/><line x1="852.6" y1="397.4" x2="852.6" y2="397.4"/><line x1="878.2" y1="397.4" x2="878.2" y2="397.4"/><line x1="0.0" y1="391.0" x2="365.4" y2="391.0"/><line x1="397.4" y1="391.0" x2="416.7" y2="391.0"/><line x1="576.9" y1="391.0" x2="596.2" y2="391.0"/><line x1="724.4" y1="391.0" x2="724.4" y2="391.0"/><line x1="756.4" y1="391.0" x2="782.1" y2="391.0"/><line x1="884.6" y1="391.0" x2="891.0" y2="391.0"/><line x1="0.0" y1="384.6" x2="365.4" y2="384.6"/><line x1="576.9" y1="384.6" x2="596.2" y2="384.6"/><line x1="685.9" y1="384.6" x2="685.9" y2="384.6"/><line x1="724.4" y1="384.6" x2="724.4" y2="384.6"/><line x1="750.0" y1="384.6" x2="788.5" y2="384.6"/><line x1="859.0" y1="384.6" x2="859.0" y2="384.6"/><line x1="884.6" y1="384.6" x2="891.0" y2="384.6"/><line x1="0.0" y1="378.2" x2="359.0" y2="378.2"/><line x1="371.8" y1="378.2" x2="378.2" y2="378.2"/><line x1="570.5" y1="378.2" x2="602.6" y2="378.2"/><line x1="724.4" y1="378.2" x2="788.5" y2="378.2"/><line x1="865.4" y1="378.2" x2="865.4" y2="378.2"/><line x1="878.2" y1="378.2" x2="884.6" y2="378.2"/><line x1="0.0" y1="371.8" x2="352.6" y2="371.8"/><line x1="371.8" y1="371.8" x2="391.0" y2="371.8"/><line x1="570.5" y1="371.8" x2="602.6" y2="371.8"/><line x1="724.4" y1="371.8" x2="788.5" y2="371.8"/><line x1="865.4" y1="371.8" x2="865.4" y2="371.8"/><line x1="878.2" y1="371.8" x2="878.2" y2="371.8"/><line x1="0.0" y1="365.4" x2="346.2" y2="365.4"/><line x1="365.4" y1="365.4" x2="410.3" y2="365.4"/><line x1="570.5" y1="365.4" x2="602.6" y2="365.4"/><line x1="717.9" y1="365.4" x2="782.1" y2="365.4"/><line x1="865.4" y1="365.4" x2="871.8" y2="365.4"/><line x1="0.0" y1="359.0" x2="346.2" y2="359.0"/><line x1="365.4" y1="359.0" x2="423.1" y2="359.0"/><line x1="564.1" y1="359.0" x2="609.0" y2="359.0"/><line x1="698.7" y1="359.0" x2="698.7" y2="359.0"/><line x1="717.9" y1="359.0" x2="782.1" y2="359.0"/><line x1="859.0" y1="359.0" x2="865.4" y2="359.0"/><line x1="0.0" y1="352.6" x2="339.7" y2="352.6"/><line x1="365.4" y1="352.6" x2="435.9" y2="352.6"/><line x1="564.1" y1="352.6" x2="615.4" y2="352.6"/><line x1="698.7" y1="352.6" x2="705.1" y2="352.6"/><line x1="717.9" y1="352.6" x2="775.6" y2="352.6"/><line x1="865.4" y1="352.6" x2="871.8" y2="352.6"/><line x1="0.0" y1="346.2" x2="333.3" y2="346.2"/><line x1="359.0" y1="346.2" x2="448.7" y2="346.2"/><line x1="564.1" y1="346.2" x2="621.8" y2="346.2"/><line x1="698.7" y1="346.2" x2="769.2" y2="346.2"/><line x1="865.4" y1="346.2" x2="871.8" y2="346.2"/><line x1="0.0" y1="339.7" x2="326.9" y2="339.7"/><line x1="359.0" y1="339.7" x2="455.1" y2="339.7"/><line x1="564.1" y1="339.7" x2="628.2" y2="339.7"/><line x1="698.7" y1="339.7" x2="762.8" y2="339.7"/><line x1="788.5" y1="339.7" x2="794.9" y2="339.7"/><line x1="0.0" y1="333.3" x2="326.9" y2="333.3"/><line x1="352.6" y1="333.3" x2="455.1" y2="333.3"/><line x1="557.7" y1="333.3" x2="641.0" y2="333.3"/><line x1="692.3" y1="333.3" x2="769.2" y2="333.3"/><line x1="0.0" y1="326.9" x2="326.9" y2="326.9"/><line x1="346.2" y1="326.9" x2="461.5" y2="326.9"/><line x1="544.9" y1="326.9" x2="544.9" y2="326.9"/><line x1="557.7" y1="326.9" x2="641.0" y2="326.9"/><line x1="685.9" y1="326.9" x2="775.6" y2="326.9"/><line x1="794.9" y1="326.9" x2="794.9" y2="326.9"/><line x1="0.0" y1="320.5" x2="320.5" y2="320.5"/><line x1="346.2" y1="320.5" x2="467.9" y2="320.5"/><line x1="538.5" y1="320.5" x2="666.7" y2="320.5"/><line x1="679.5" y1="320.5" x2="814.1" y2="320.5"/><line x1="0.0" y1="314.1" x2="314.1" y2="314.1"/><line x1="339.7" y1="314.1" x2="467.9" y2="314.1"/><line x1="532.1" y1="314.1" x2="833.3" y2="314.1"/><line x1="865.4" y1="314.1" x2="865.4" y2="314.1"/><line x1="0.0" y1="307.7" x2="314.1" y2="307.7"/><line x1="339.7" y1="307.7" x2="416.7" y2="307.7"/><line x1="429.5" y1="307.7" x2="455.1" y2="307.7"/><line x1="525.6" y1="307.7" x2="839.7" y2="307.7"/><line x1="865.4" y1="307.7" x2="865.4" y2="307.7"/><line x1="0.0" y1="301.3" x2="307.7" y2="301.3"/><line x1="333.3" y1="301.3" x2="416.7" y2="301.3"/><line x1="448.7" y1="301.3" x2="448.7" y2="301.3"/><line x1="519.2" y1="301.3" x2="846.2" y2="301.3"/><line x1="0.0" y1="294.9" x2="307.7" y2="294.9"/><line x1="326.9" y1="294.9" x2="410.3" y2="294.9"/><line x1="461.5" y1="294.9" x2="852.6" y2="294.9"/><line x1="6.4" y1="288.5" x2="301.3" y2="288.5"/><line x1="320.5" y1="288.5" x2="403.8" y2="288.5"/><line x1="435.9" y1="288.5" x2="442.3" y2="288.5"/><line x1="455.1" y1="288.5" x2="859.0" y2="288.5"/><line x1="12.8" y1="282.1" x2="307.7" y2="282.1"/><line x1="320.5" y1="282.1" x2="397.4" y2="282.1"/><line x1="423.1" y1="282.1" x2="859.0" y2="282.1"/><line x1="25.6" y1="275.6" x2="294.9" y2="275.6"/><line x1="307.7" y1="275.6" x2="397.4" y2="275.6"/><line x1="416.7" y1="275.6" x2="865.4" y2="275.6"/><line x1="32.1" y1="269.2" x2="397.4" y2="269.2"/><line x1="416.7" y1="269.2" x2="865.4" y2="269.2"/><line x1="32.1" y1="262.8" x2="198.7" y2="262.8"/><line x1="224.4" y1="262.8" x2="269.2" y2="262.8"/><line x1="282.1" y1="262.8" x2="865.4" y2="262.8"/><line x1="32.1" y1="256.4" x2="185.9" y2="256.4"/><line x1="217.9" y1="256.4" x2="243.6" y2="256.4"/><line x1="314.1" y1="256.4" x2="865.4" y2="256.4"/><line x1="929.5" y1="256.4" x2="929.5" y2="256.4"/><line x1="38.5" y1="250.0" x2="160.3" y2="250.0"/><line x1="320.5" y1="250.0" x2="859.0" y2="250.0"/><line x1="923.1" y1="250.0" x2="929.5" y2="250.0"/><line x1="942.3" y1="250.0" x2="942.3" y2="250.0"/><line x1="51.3" y1="243.6" x2="153.8" y2="243.6"/><line x1="320.5" y1="243.6" x2="859.0" y2="243.6"/><line x1="935.9" y1="243.6" x2="948.7" y2="243.6"/><line x1="961.5" y1="243.6" x2="961.5" y2="243.6"/><line x1="51.3" y1="237.2" x2="153.8" y2="237.2"/><line x1="250.0" y1="237.2" x2="250.0" y2="237.2"/><line x1="301.3" y1="237.2" x2="307.7" y2="237.2"/><line x1="320.5" y1="237.2" x2="852.6" y2="237.2"/><line x1="903.8" y1="237.2" x2="910.3" y2="237.2"/><line x1="942.3" y1="237.2" x2="980.8" y2="237.2"/><line x1="96.2" y1="230.8" x2="153.8" y2="230.8"/><line x1="320.5" y1="230.8" x2="859.0" y2="230.8"/><line x1="903.8" y1="230.8" x2="916.7" y2="230.8"/><line x1="961.5" y1="230.8" x2="987.2" y2="230.8"/><line x1="38.5" y1="224.4" x2="38.5" y2="224.4"/><line x1="51.3" y1="224.4" x2="76.9" y2="224.4"/><line x1="147.4" y1="224.4" x2="160.3" y2="224.4"/><line x1="185.9" y1="224.4" x2="185.9" y2="224.4"/><line x1="237.2" y1="224.4" x2="237.2" y2="224.4"/><line x1="262.8" y1="224.4" x2="262.8" y2="224.4"/><line x1="275.6" y1="224.4" x2="871.8" y2="224.4"/><line x1="903.8" y1="224.4" x2="916.7" y2="224.4"/><line x1="967.9" y1="224.4" x2="987.2" y2="224.4"/><line x1="38.5" y1="217.9" x2="83.3" y2="217.9"/><line x1="173.1" y1="217.9" x2="192.3" y2="217.9"/><line x1="230.8" y1="217.9" x2="243.6" y2="217.9"/><line x1="269.2" y1="217.9" x2="852.6" y2="217.9"/><line x1="897.4" y1="217.9" x2="910.3" y2="217.9"/><line x1="987.2" y1="217.9" x2="987.2" y2="217.9"/><line x1="32.1" y1="211.5" x2="83.3" y2="211.5"/><line x1="147.4" y1="211.5" x2="147.4" y2="211.5"/><line x1="198.7" y1="211.5" x2="198.7" y2="211.5"/><line x1="230.8" y1="211.5" x2="237.2" y2="211.5"/><line x1="262.8" y1="211.5" x2="839.7" y2="211.5"/><line x1="897.4" y1="211.5" x2="903.8" y2="211.5"/><line x1="987.2" y1="211.5" x2="993.6" y2="211.5"/><line x1="38.5" y1="205.1" x2="89.7" y2="205.1"/><line x1="115.4" y1="205.1" x2="115.4" y2="205.1"/><line x1="147.4" y1="205.1" x2="147.4" y2="205.1"/><line x1="192.3" y1="205.1" x2="192.3" y2="205.1"/><line x1="217.9" y1="205.1" x2="230.8" y2="205.1"/><line x1="243.6" y1="205.1" x2="243.6" y2="205.1"/><line x1="262.8" y1="205.1" x2="852.6" y2="205.1"/><line x1="871.8" y1="205.1" x2="910.3" y2="205.1"/><line x1="987.2" y1="205.1" x2="993.6" y2="205.1"/><line x1="38.5" y1="198.7" x2="89.7" y2="198.7"/><line x1="147.4" y1="198.7" x2="147.4" y2="198.7"/><line x1="179.5" y1="198.7" x2="198.7" y2="198.7"/><line x1="217.9" y1="198.7" x2="262.8" y2="198.7"/><line x1="282.1" y1="198.7" x2="326.9" y2="198.7"/><line x1="339.7" y1="198.7" x2="339.7" y2="198.7"/><line x1="352.6" y1="198.7" x2="916.7" y2="198.7"/><line x1="38.5" y1="192.3" x2="109.0" y2="192.3"/><line x1="147.4" y1="192.3" x2="147.4" y2="192.3"/><line x1="166.7" y1="192.3" x2="179.5" y2="192.3"/><line x1="217.9" y1="192.3" x2="269.2" y2="192.3"/><line x1="314.1" y1="192.3" x2="314.1" y2="192.3"/><line x1="359.0" y1="192.3" x2="916.7" y2="192.3"/><line x1="32.1" y1="185.9" x2="109.0" y2="185.9"/><line x1="160.3" y1="185.9" x2="173.1" y2="185.9"/><line x1="205.1" y1="185.9" x2="262.8" y2="185.9"/><line x1="352.6" y1="185.9" x2="929.5" y2="185.9"/><line x1="942.3" y1="185.9" x2="948.7" y2="185.9"/><line x1="993.6" y1="185.9" x2="1000.0" y2="185.9"/><line x1="83.3" y1="179.5" x2="141.0" y2="179.5"/><line x1="160.3" y1="179.5" x2="166.7" y2="179.5"/><line x1="192.3" y1="179.5" x2="269.2" y2="179.5"/><line x1="346.2" y1="179.5" x2="955.1" y2="179.5"/><line x1="1000.0" y1="179.5" x2="1000.0" y2="179.5"/><line x1="83.3" y1="173.1" x2="166.7" y2="173.1"/><line x1="179.5" y1="173.1" x2="275.6" y2="173.1"/><line x1="307.7" y1="173.1" x2="314.1" y2="173.1"/><line x1="333.3" y1="173.1" x2="961.5" y2="173.1"/><line x1="1000.0" y1="173.1" x2="1000.0" y2="173.1"/><line x1="83.3" y1="166.7" x2="282.1" y2="166.7"/><line x1="307.7" y1="166.7" x2="307.7" y2="166.7"/><line x1="333.3" y1="166.7" x2="967.9" y2="166.7"/><line x1="1000.0" y1="166.7" x2="1000.0" y2="166.7"/><line x1="76.9" y1="160.3" x2="326.9" y2="160.3"/><line x1="346.2" y1="160.3" x2="974.4" y2="160.3"/><line x1="64.1" y1="153.8" x2="980.8" y2="153.8"/><line x1="83.3" y1="147.4" x2="987.2" y2="147.4"/><line x1="102.6" y1="141.0" x2="987.2" y2="141.0"/><line x1="64.1" y1="134.6" x2="89.7" y2="134.6"/><line x1="109.0" y1="134.6" x2="987.2" y2="134.6"/><line x1="25.6" y1="128.2" x2="38.5" y2="128.2"/><line x1="57.7" y1="128.2" x2="96.2" y2="128.2"/><line x1="121.8" y1="128.2" x2="1000.0" y2="128.2"/><line x1="32.1" y1="121.8" x2="44.9" y2="121.8"/><line x1="64.1" y1="121.8" x2="89.7" y2="121.8"/><line x1="128.2" y1="121.8" x2="987.2" y2="121.8"/><line x1="1000.0" y1="121.8" x2="1000.0" y2="121.8"/><line x1="25.6" y1="115.4" x2="44.9" y2="115.4"/><line x1="76.9" y1="115.4" x2="83.3" y2="115.4"/><line x1="147.4" y1="115.4" x2="153.8" y2="115.4"/><line x1="166.7" y1="115.4" x2="173.1" y2="115.4"/><line x1="185.9" y1="115.4" x2="961.5" y2="115.4"/><line x1="980.8" y1="115.4" x2="987.2" y2="115.4"/><line x1="38.5" y1="109.0" x2="76.9" y2="109.0"/><line x1="147.4" y1="109.0" x2="147.4" y2="109.0"/><line x1="166.7" y1="109.0" x2="166.7" y2="109.0"/><line x1="185.9" y1="109.0" x2="185.9" y2="109.0"/><line x1="230.8" y1="109.0" x2="955.1" y2="109.0"/><line x1="967.9" y1="109.0" x2="974.4" y2="109.0"/><line x1="57.7" y1="102.6" x2="64.1" y2="102.6"/><line x1="147.4" y1="102.6" x2="153.8" y2="102.6"/><line x1="166.7" y1="102.6" x2="179.5" y2="102.6"/><line x1="230.8" y1="102.6" x2="967.9" y2="102.6"/><line x1="57.7" y1="96.2" x2="70.5" y2="96.2"/><line x1="147.4" y1="96.2" x2="153.8" y2="96.2"/><line x1="173.1" y1="96.2" x2="192.3" y2="96.2"/><line x1="230.8" y1="96.2" x2="974.4" y2="96.2"/><line x1="44.9" y1="89.7" x2="44.9" y2="89.7"/><line x1="57.7" y1="89.7" x2="64.1" y2="89.7"/><line x1="166.7" y1="89.7" x2="192.3" y2="89.7"/><line x1="250.0" y1="89.7" x2="987.2" y2="89.7"/><line x1="134.6" y1="83.3" x2="153.8" y2="83.3"/><line x1="166.7" y1="83.3" x2="198.7" y2="83.3"/><line x1="243.6" y1="83.3" x2="1000.0" y2="83.3"/><line x1="128.2" y1="76.9" x2="205.1" y2="76.9"/><line x1="288.5" y1="76.9" x2="1000.0" y2="76.9"/><line x1="121.8" y1="70.5" x2="198.7" y2="70.5"/><line x1="230.8" y1="70.5" x2="1000.0" y2="70.5"/><line x1="44.9" y1="64.1" x2="44.9" y2="64.1"/><line x1="121.8" y1="64.1" x2="198.7" y2="64.1"/><line x1="230.8" y1="64.1" x2="1000.0" y2="64.1"/><line x1="147.4" y1="57.7" x2="205.1" y2="57.7"/><line x1="230.8" y1="57.7" x2="1000.0" y2="57.7"/><line x1="160.3" y1="51.3" x2="217.9" y2="51.3"/><line x1="243.6" y1="51.3" x2="320.5" y2="51.3"/><line x1="339.7" y1="51.3" x2="1000.0" y2="51.3"/><line x1="0.0" y1="44.9" x2="0.0" y2="44.9"/><line x1="166.7" y1="44.9" x2="224.4" y2="44.9"/><line x1="256.4" y1="44.9" x2="307.7" y2="44.9"/><line x1="326.9" y1="44.9" x2="326.9" y2="44.9"/><line x1="352.6" y1="44.9" x2="1000.0" y2="44.9"/><line x1="173.1" y1="38.5" x2="307.7" y2="38.5"/><line x1="352.6" y1="38.5" x2="1000.0" y2="38.5"/><line x1="185.9" y1="32.1" x2="352.6" y2="32.1"/><line x1="378.2" y1="32.1" x2="378.2" y2="32.1"/><line x1="397.4" y1="32.1" x2="544.9" y2="32.1"/><line x1="564.1" y1="32.1" x2="1000.0" y2="32.1"/><line x1="173.1" y1="25.6" x2="173.1" y2="25.6"/><line x1="192.3" y1="25.6" x2="339.7" y2="25.6"/><line x1="378.2" y1="25.6" x2="384.6" y2="25.6"/><line x1="410.3" y1="25.6" x2="429.5" y2="25.6"/><line x1="442.3" y1="25.6" x2="557.7" y2="25.6"/><line x1="570.5" y1="25.6" x2="1000.0" y2="25.6"/><line x1="205.1" y1="19.2" x2="320.5" y2="19.2"/><line x1="403.8" y1="19.2" x2="403.8" y2="19.2"/><line x1="480.8" y1="19.2" x2="512.8" y2="19.2"/><line x1="532.1" y1="19.2" x2="551.3" y2="19.2"/><line x1="589.7" y1="19.2" x2="1000.0" y2="19.2"/><line x1="211.5" y1="12.8" x2="211.5" y2="12.8"/><line x1="237.2" y1="12.8" x2="275.6" y2="12.8"/><line x1="467.9" y1="12.8" x2="474.4" y2="12.8"/><line x1="525.6" y1="12.8" x2="551.3" y2="12.8"/><line x1="564.1" y1="12.8" x2="1000.0" y2="12.8"/><line x1="243.6" y1="6.4" x2="256.4" y2="6.4"/><line x1="269.2" y1="6.4" x2="269.2" y2="6.4"/><line x1="429.5" y1="6.4" x2="448.7" y2="6.4"/><line x1="519.2" y1="6.4" x2="551.3" y2="6.4"/><line x1="564.1" y1="6.4" x2="583.3" y2="6.4"/><line x1="596.2" y1="6.4" x2="615.4" y2="6.4"/><line x1="628.2" y1="6.4" x2="923.1" y2="6.4"/><line x1="935.9" y1="6.4" x2="1000.0" y2="6.4"/><line x1="423.1" y1="0.0" x2="442.3" y2="0.0"/><line x1="532.1" y1="0.0" x2="551.3" y2="0.0"/><line x1="570.5" y1="0.0" x2="570.5" y2="0.0"/><line x1="596.2" y1="0.0" x2="602.6" y2="0.0"/><line x1="621.8" y1="0.0" x2="916.7" y2="0.0"/><line x1="987.2" y1="0.0" x2="1000.0" y2="0.0"/></g><path class="wm-arc" d="M169.3 151.3 Q157.5 124.5 145.8 137.8"/><path class="wm-arc" d="M169.3 151.3 Q180.2 123.3 191.1 134.7"/><path class="wm-arc" d="M169.3 151.3 Q514.0 71.2 858.8 257.6"/><line class="wm-lead" x1="169.3" y1="151.3" x2="146" y2="224"/><text class="wm-lab" x="146" y="239" text-anchor="middle">Roth</text><g class="wm-site" data-site="LAB1"><circle class="wm-halo pulse" cx="169.3" cy="151.3" r="17"/><circle class="wm-pin ref" cx="169.3" cy="151.3" r="11"/><text class="wm-num" x="169.3" y="151.3">1</text></g><line class="wm-lead" x1="145.8" y1="137.8" x2="62" y2="122"/><text class="wm-lab" x="62" y="114" text-anchor="middle">Kitzingen</text><g class="wm-site" data-site="LAB2"><circle class="wm-halo pulse" cx="145.8" cy="137.8" r="17"/><circle class="wm-pin" cx="145.8" cy="137.8" r="11"/><text class="wm-num" x="145.8" y="137.8">2</text></g><line class="wm-lead" x1="191.1" y1="134.7" x2="258" y2="76"/><text class="wm-lab" x="258" y="68" text-anchor="middle">Jelenia Góra</text><g class="wm-site" data-site="LAB3"><circle class="wm-halo pulse" cx="191.1" cy="134.7" r="17"/><circle class="wm-pin" cx="191.1" cy="134.7" r="11"/><text class="wm-num" x="191.1" y="134.7">3</text></g><line class="wm-lead" x1="858.8" y1="257.6" x2="872" y2="322"/><text class="wm-lab" x="872" y="337" text-anchor="middle">Changzhou</text><g class="wm-site" data-site="LAB4"><circle class="wm-halo pulse" cx="858.8" cy="257.6" r="17"/><circle class="wm-pin" cx="858.8" cy="257.6" r="11"/><text class="wm-num" x="858.8" y="257.6">4</text></g></svg></div>
+      <div>
+        <div class="site-list"><div class="site-row" data-site="LAB1">
+  <div class="site-n ref">1</div>
+  <div>
+    <div class="site-city">Roth, Germany</div>
+    <div class="site-sub">Reference laboratory &middot; 7.9071 &plusmn; 0.047 dB</div>
+  </div>
+  <div class="site-num">
+    <b>E<sub>n</sub> -0.22</b>
+    <span class="pill pill-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>compatible</span>
+  </div>
+</div>
+<div class="site-row" data-site="LAB2">
+  <div class="site-n">2</div>
+  <div>
+    <div class="site-city">Kitzingen, Germany</div>
+    <div class="site-sub">Measurement site &middot; 7.9180 &plusmn; 0.080 dB</div>
+  </div>
+  <div class="site-num">
+    <b>E<sub>n</sub> +0.04</b>
+    <span class="pill pill-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>compatible</span>
+  </div>
+</div>
+<div class="site-row" data-site="LAB3">
+  <div class="site-n">3</div>
+  <div>
+    <div class="site-city">Jelenia Góra, Poland</div>
+    <div class="site-sub">Measurement site &middot; 7.9193 &plusmn; 0.063 dB</div>
+  </div>
+  <div class="site-num">
+    <b>E<sub>n</sub> +0.08</b>
+    <span class="pill pill-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>compatible</span>
+  </div>
+</div>
+<div class="site-row" data-site="LAB4">
+  <div class="site-n">4</div>
+  <div>
+    <div class="site-city">Changzhou, China</div>
+    <div class="site-sub">Measurement site &middot; 7.9231 &plusmn; 0.065 dB</div>
+  </div>
+  <div class="site-num">
+    <b>E<sub>n</sub> +0.14</b>
+    <span class="pill pill-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>compatible</span>
+  </div>
+</div></div>
+        <p class="map-note">
+          Insertion loss at 600&nbsp;MHz on the circulating artefact, aggregated over ten fortnightly rounds.
+          The reference is a <b>Cox largest-consistent-subset consensus</b> of <b>7.9149&nbsp;dB</b>.
+          <b>E<sub>n</sub></b> is the difference from that reference divided by the expanded uncertainty of
+          the difference: any value below 1 means the sites are not distinguishable.
+          Site symbols are displaced where two sites coincide at map scale.
+        </p>
+        <div class="jobs">
+  <div class="jobs-head"><b>200</b><span>measurement jobs — each mark is one, from the network's own records</span></div>
+  <div class="jobs-row"><span class="lab">Roth</span><span class="jobs-cells"><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span></span></div><div class="jobs-row"><span class="lab">Kitzingen</span><span class="jobs-cells"><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span></span></div><div class="jobs-row"><span class="lab">Jelenia Góra</span><span class="jobs-cells"><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span><span class="jc f"></span></span></div><div class="jobs-row"><span class="lab">Changzhou</span><span class="jobs-cells"><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span><span class="jc x"></span></span></div>
+  <div class="jobs-legend">
+    <span><span class="jc"></span> sample passed its limits</span>
+    <span><span class="jc f"></span> measured fine, sample failed — a product result, not a laboratory error</span>
+    <span><span class="jc x"></span> refused at the calibration gate — the degraded site, caught</span>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= results -->
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Output</div>
+      <h2>What the toolchain actually produces</h2>
+      <p>
+        Every image below is generated by running the code in this repository — no mock-ups, no
+        illustrations. Each figure is reproducible from a single command.
+      </p>
+    </div>
+    <div class="gallery">
+      <figure class="shot wide">
+        <div class="shot-img"><img src="assets/img/impedance-profile.png" width="1170" height="1170" loading="lazy"
+          alt="Reconstructed impedance against position along a 15 metre cable, with a manufacturing defect located and marked."></div>
+        <div class="shot-body">
+          <h4>A defect located to the metre, not to a bump on a graph</h4>
+          <p>Loss-aware layer peeling turns a frequency-domain reflection measurement into characteristic
+             impedance along the cable. The plain transform is biased by 4 to 9&nbsp;Ω over 15&nbsp;m;
+             this reconstruction is within a few tenths of an ohm. <code>zprofile</code></p>
+        </div>
+      </figure>
+      <figure class="shot">
+        <div class="shot-img"><img src="assets/img/uncertainty-budget.png" width="1400" height="458" loading="lazy"
+          alt="Left: uncertainty budget split per site. Right: each site's value against the consensus with expanded uncertainty bars."></div>
+        <div class="shot-body">
+          <h4>Every number carries its budget</h4>
+          <p>Calibration, repeatability, fixture, instrument, environment and noise, combined the
+             GUM way and stored with the result. <code>labplatform</code></p>
+        </div>
+      </figure>
+      <figure class="shot">
+        <div class="shot-img"><img src="assets/img/drift.png" width="1400" height="855" loading="lazy"
+          alt="Longitudinal series per site with a fitted trend, a detected change point and an EWMA signal."></div>
+        <div class="shot-body">
+          <h4>Drift caught before the gate refuses</h4>
+          <p>Trend, change point and EWMA on each site's artefact series, with the root cause attributed
+             against calibration and environment records. <code>labplatform</code></p>
+        </div>
+      </figure>
+      <figure class="shot">
+        <div class="shot-img"><img src="assets/img/sensitivity.png" width="1400" height="532" loading="lazy"
+          alt="Tornado chart ranking each parameter by its effect on the link margin and on the eye height."></div>
+        <div class="shot-body">
+          <h4>Which tolerance actually decides the design</h4>
+          <p>One-at-a-time sensitivity says the link hinges on connector balance — 0.96&nbsp;dB — while
+             every other parameter moves it by under 0.01&nbsp;dB. <code>linktwin</code></p>
+        </div>
+      </figure>
+      <figure class="shot">
+        <div class="shot-img"><img src="assets/img/production-prediction.png" width="1170" height="442" loading="lazy"
+          alt="Predicted against measured loss coefficients with prediction intervals, for held-out production samples."></div>
+        <div class="shot-body">
+          <h4>Performance predicted from the extrusion line</h4>
+          <p>Loss and impedance predicted from manufacturing parameters alone, with honest 90&nbsp;%
+             prediction intervals, cross-validated against held-out samples. <code>cableanalytics</code></p>
+        </div>
+      </figure>
+      <figure class="shot">
+        <div class="shot-img"><img src="assets/img/link-limits.png" width="1400" height="896" loading="lazy"
+          alt="Insertion loss, return loss and mode conversion of a complete link against the 1000BASE-T1 limit lines."></div>
+        <div class="shot-body">
+          <h4>A whole harness against the standard</h4>
+          <p>Cable, connectors and PCB traces cascaded on all four ports, judged against the same limit
+             files a measured harness would face. <code>linktwin</code> + <code>cablecheck</code></p>
+        </div>
+      </figure>
+      <figure class="shot">
+        <div class="shot-img"><img src="assets/img/shielding.png" width="1170" height="936" loading="lazy"
+          alt="Transfer impedance and screening attenuation from the legacy and the modern method, compared across frequency."></div>
+        <div class="shot-body">
+          <h4>A legacy-style method reproduced exactly, then replaced</h4>
+          <p>The old tool is reconstructed byte-for-byte so historical results stay reproducible, and the
+             modern method runs beside it with the difference quantified. <code>shieldeval</code></p>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= phases -->
+<section id="roadmap" class="tint">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Build order</div>
+      <h2>Built in four phases, bottom up</h2>
+      <p>
+        Nothing here could have been built in a different order. Each phase needed the one before it to
+        exist first — the digital twin is only possible because the measurement layer underneath it is trustworthy.
+      </p>
+    </div>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-bar"></div>
+        <div class="phase-n">Phase 01</div>
+        <h4>Foundation and core algorithms</h4>
+        <p>The measurement layer: network algebra, de-embedding, mixed-mode decomposition and
+           limit evaluation, plus the two standalone algorithm projects.</p>
+        <div class="phase-tags"><span class="tag">cablecheck</span><span class="tag">zprofile</span><span class="tag">shieldeval</span></div>
+      </div>
+      <div class="phase">
+        <div class="phase-bar"></div>
+        <div class="phase-n">Phase 02</div>
+        <h4>Production analytics</h4>
+        <p>Linking what happens on the extrusion line to what the laboratory measures, and turning
+           that link into a predictive model with stated intervals.</p>
+        <div class="phase-tags"><span class="tag">cableanalytics</span></div>
+      </div>
+      <div class="phase">
+        <div class="phase-bar"></div>
+        <div class="phase-n">Phase 03</div>
+        <h4>Automation and the trust layer</h4>
+        <p>Making measurements reproducible six months later from the archive alone, then making
+           several laboratories comparable to each other.</p>
+        <div class="phase-tags"><span class="tag">labauto</span><span class="tag">labplatform</span></div>
+      </div>
+      <div class="phase">
+        <div class="phase-bar"></div>
+        <div class="phase-n">Phase 04</div>
+        <h4>Predictive digital twin</h4>
+        <p>Using every layer below to answer design questions — pass or fail, reach, connector budget,
+           eye height — before any hardware is built.</p>
+        <div class="phase-tags"><span class="tag">linktwin</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= reports -->
+<section id="reports">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Documentation</div>
+      <h2>Ninety pages, every method stated</h2>
+      <p>
+        Each package ships a technical report that gives the mathematics with notation defined where it
+        is used, cites the standards and papers it rests on, reports the validation against ground truth,
+        and ends with a section declaring what the method does <em>not</em> model. The reports are built
+        from source in continuous integration, so they cannot drift from the code.
+      </p>
+    </div>
+    <div class="reports"><a class="report" href="reports/cablecheck.pdf">
+  <svg class="report-ico" viewBox="0 0 34 40" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h17l10 10v25a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="var(--surface-2)" stroke="var(--border-strong)"/>
+    <path d="M22 1v7a3 3 0 0 0 3 3h7" fill="none" stroke="var(--border-strong)"/>
+    <text x="17" y="28" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent)" font-family="var(--sans)">PDF</text>
+  </svg>
+  <div>
+    <div class="report-t">A &middot; cablecheck</div>
+    <div class="report-s">13 pages &middot; 12 references</div>
+  </div>
+</a>
+<a class="report" href="reports/labauto.pdf">
+  <svg class="report-ico" viewBox="0 0 34 40" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h17l10 10v25a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="var(--surface-2)" stroke="var(--border-strong)"/>
+    <path d="M22 1v7a3 3 0 0 0 3 3h7" fill="none" stroke="var(--border-strong)"/>
+    <text x="17" y="28" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent)" font-family="var(--sans)">PDF</text>
+  </svg>
+  <div>
+    <div class="report-t">B &middot; labauto</div>
+    <div class="report-s">12 pages &middot; 29 references</div>
+  </div>
+</a>
+<a class="report" href="reports/shieldeval.pdf">
+  <svg class="report-ico" viewBox="0 0 34 40" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h17l10 10v25a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="var(--surface-2)" stroke="var(--border-strong)"/>
+    <path d="M22 1v7a3 3 0 0 0 3 3h7" fill="none" stroke="var(--border-strong)"/>
+    <text x="17" y="28" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent)" font-family="var(--sans)">PDF</text>
+  </svg>
+  <div>
+    <div class="report-t">C &middot; shieldeval</div>
+    <div class="report-s">10 pages &middot; 8 references</div>
+  </div>
+</a>
+<a class="report" href="reports/zprofile.pdf">
+  <svg class="report-ico" viewBox="0 0 34 40" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h17l10 10v25a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="var(--surface-2)" stroke="var(--border-strong)"/>
+    <path d="M22 1v7a3 3 0 0 0 3 3h7" fill="none" stroke="var(--border-strong)"/>
+    <text x="17" y="28" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent)" font-family="var(--sans)">PDF</text>
+  </svg>
+  <div>
+    <div class="report-t">D &middot; zprofile</div>
+    <div class="report-s">17 pages &middot; 16 references</div>
+  </div>
+</a>
+<a class="report" href="reports/cableanalytics.pdf">
+  <svg class="report-ico" viewBox="0 0 34 40" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h17l10 10v25a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="var(--surface-2)" stroke="var(--border-strong)"/>
+    <path d="M22 1v7a3 3 0 0 0 3 3h7" fill="none" stroke="var(--border-strong)"/>
+    <text x="17" y="28" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent)" font-family="var(--sans)">PDF</text>
+  </svg>
+  <div>
+    <div class="report-t">E &middot; cableanalytics</div>
+    <div class="report-s">8 pages &middot; 16 references</div>
+  </div>
+</a>
+<a class="report" href="reports/labplatform.pdf">
+  <svg class="report-ico" viewBox="0 0 34 40" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h17l10 10v25a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="var(--surface-2)" stroke="var(--border-strong)"/>
+    <path d="M22 1v7a3 3 0 0 0 3 3h7" fill="none" stroke="var(--border-strong)"/>
+    <text x="17" y="28" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent)" font-family="var(--sans)">PDF</text>
+  </svg>
+  <div>
+    <div class="report-t">F &middot; labplatform</div>
+    <div class="report-s">11 pages &middot; 42 references</div>
+  </div>
+</a>
+<a class="report" href="reports/linktwin.pdf">
+  <svg class="report-ico" viewBox="0 0 34 40" aria-hidden="true">
+    <path d="M2 4a3 3 0 0 1 3-3h17l10 10v25a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3z" fill="var(--surface-2)" stroke="var(--border-strong)"/>
+    <path d="M22 1v7a3 3 0 0 0 3 3h7" fill="none" stroke="var(--border-strong)"/>
+    <text x="17" y="28" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--accent)" font-family="var(--sans)">PDF</text>
+  </svg>
+  <div>
+    <div class="report-t">G &middot; linktwin</div>
+    <div class="report-s">19 pages &middot; 29 references</div>
+  </div>
+</a></div>
+  </div>
+</section>
+
+<!-- ======================================================= about -->
+<section class="tint">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="sec-kicker">About this work</div>
+        <h2 style="font-size:1.6rem;margin-bottom:16px">Engineering portfolio, production standards</h2>
+        <p style="color:var(--text-2)">
+          I am <strong>Sreeram Anil</strong>, an MSc Electromobility student at FAU Erlangen-Nürnberg,
+          writing my thesis on model-predictive control, based in Bavaria. This toolchain is a portfolio project: it was built to
+          find out whether an entire measurement-to-prediction chain for high-frequency cables could be made
+          to hold together, and to build it the way it would have to be built in industry.
+        </p>
+        <p style="color:var(--text-2)">
+          Every package has a test suite that runs on three Python versions on every push, a technical
+          report built from source, an uncertainty statement where one is warranted, and a declared list
+          of its own limitations. The engineering judgement — what to model, what to measure, what to
+          validate against, and what to refuse to claim — is the substance of the work.
+        </p>
+        <div class="hero-cta" style="margin-bottom:0">
+          <a class="btn btn-primary" href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">The toolchain on GitHub</a>
+          <a class="btn btn-ghost" href="mailto:sreeramanil30@gmail.com">Get in touch</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="cablewrap"><svg class="cable-art" viewBox="-158 -14 776 400" role="img" aria-label="Labelled cross-section of a shielded twisted-pair cable: jacket, braid shield, foil, dielectric, and the copper pair.">
+<defs>
+  <radialGradient id="cu" cx="35%" cy="35%"><stop offset="0%" stop-color="#e8a25e"/><stop offset="55%" stop-color="#b87333"/><stop offset="100%" stop-color="#8a5423"/></radialGradient>
+  <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d9dee5"/><stop offset="50%" stop-color="#9aa3ae"/><stop offset="100%" stop-color="#c6ccd4"/></linearGradient>
+  <pattern id="braid" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="9" height="9" fill="#7d8794"/><line x1="0" y1="0" x2="0" y2="9" stroke="#5b6572" stroke-width="3.4"/><line x1="4.5" y1="0" x2="4.5" y2="9" stroke="#aeb7c2" stroke-width="1.6"/>
+  </pattern>
+</defs>
+<circle cx="200" cy="180" r="150" fill="#3b4048"/>
+<circle cx="200" cy="180" r="150" fill="none" stroke="#2b2f36" stroke-width="3"/>
+<circle cx="200" cy="180" r="126" fill="url(#braid)"/>
+<circle cx="200" cy="180" r="107" fill="url(#foil)"/>
+<circle cx="200" cy="180" r="100" fill="#e9e4d8"/>
+<circle cx="151" cy="180" r="46" fill="#f4f1ea" stroke="#d8d2c4" stroke-width="1.5"/>
+<circle cx="249" cy="180" r="46" fill="#3f6fb5" stroke="#33598f" stroke-width="1.5"/>
+<circle cx="151" cy="180" r="24" fill="url(#cu)"/>
+<circle cx="249" cy="180" r="24" fill="url(#cu)"/>
+<circle cx="143" cy="171" r="7" fill="#ffffff" opacity=".35"/>
+<circle cx="241" cy="171" r="7" fill="#ffffff" opacity=".35"/>
+<line x1="306" y1="74" x2="352" y2="46" stroke="var(--border-strong)" stroke-width="1"/><text x="358" y="42" font-size="13" fill="var(--text-2)" font-weight="600">Jacket</text><text x="358" y="56" font-size="10" fill="var(--text-3)">the 150 °C rating lives here</text>
+<line x1="288" y1="271" x2="356" y2="286" stroke="var(--border-strong)" stroke-width="1"/><text x="362" y="284" font-size="13" fill="var(--text-2)" font-weight="600">Braid shield</text><text x="362" y="298" font-size="10" fill="var(--text-3)">shieldeval's subject</text>
+<line x1="198" y1="76" x2="198" y2="34" stroke="var(--border-strong)" stroke-width="1"/><text x="206" y="30" font-size="13" fill="var(--text-2)" font-weight="600" text-anchor="start">Foil</text>
+<line x1="108" y1="108" x2="34" y2="66" stroke="var(--border-strong)" stroke-width="1"/><text x="30" y="62" font-size="13" fill="var(--text-2)" font-weight="600" text-anchor="end">Dielectric</text><text x="30" y="76" font-size="10" fill="var(--text-3)" text-anchor="end">tan δ → the b·f loss term</text>
+<line x1="151" y1="206" x2="66" y2="312" stroke="var(--border-strong)" stroke-width="1"/><text x="62" y="326" font-size="13" fill="var(--text-2)" font-weight="600" text-anchor="end">Copper pair, 100 Ω differential</text><text x="62" y="340" font-size="10" fill="var(--text-3)" text-anchor="end">skin effect → the a√f loss term</text>
+<text x="200" y="364" text-anchor="middle" font-size="10" fill="var(--text-3)" font-style="italic">The object of study — every loss term in the models maps to a layer of this drawing.</text>
+</svg></div>
+        <div class="note">
+          <h4>All data here is synthetic</h4>
+          <p>
+            No proprietary or customer measurements appear anywhere in this toolchain. Cables come from a
+            physics-based synthesiser, instruments from a simulator with a realistic error model, and
+            production records from a generator. That is a deliberate choice, and it is what makes the
+            validation meaningful: the ground truth is known exactly, so every claim about accuracy is
+            checked against a number rather than asserted.
+          </p>
+        </div>
+        <div class="note">
+          <h4>Built with AI assistance</h4>
+          <p>
+            The commit history records it openly. The architecture, the validation strategy, the decisions
+            about what each method may and may not claim, and the limitations stated in every report are
+            the engineering content — and they are what I can walk you through line by line.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:12px">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+            <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span>HF Cable Toolchain</span>
+        </a>
+        <p style="color:var(--text-3);font-size:.88rem;max-width:42ch">
+          Measurement evaluation, laboratory automation, impedance reconstruction, production analytics,
+          multi-site metrology and a full-link digital twin for automotive Ethernet cables.
+        </p>
+      </div>
+      <div>
+        <h5>Packages</h5>
+        <div class="foot-links"><a href="https://github.com/anilram30/cablecheck" rel="noopener">A &middot; cablecheck</a>
+<a href="https://github.com/anilram30/labauto" rel="noopener">B &middot; labauto</a>
+<a href="https://github.com/anilram30/shieldeval" rel="noopener">C &middot; shieldeval</a>
+<a href="https://github.com/anilram30/zprofile" rel="noopener">D &middot; zprofile</a>
+<a href="https://github.com/anilram30/cableanalytics" rel="noopener">E &middot; cableanalytics</a>
+<a href="https://github.com/anilram30/labplatform" rel="noopener">F &middot; labplatform</a>
+<a href="https://github.com/anilram30/linktwin" rel="noopener">G &middot; linktwin</a></div>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <div class="foot-links">
+          <a href="https://github.com/anilram30" rel="noopener">GitHub profile</a>
+          <a href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">Toolchain hub</a>
+          <a href="mailto:sreeramanil30@gmail.com">sreeramanil30@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sreeram Anil · Released under the MIT licence</span>
+      <span>All measurement data on this site is synthetic</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

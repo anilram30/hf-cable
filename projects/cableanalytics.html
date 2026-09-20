@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cableanalytics — HF Cable Toolchain</title>
+<meta name="description" content="Connects production-line records to measured high-frequency cable performance, and predicts one from the other.">
+<meta name="author" content="Sreeram Anil">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M6 20c4-9 6-9 10 0s6 9 10 0' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+        <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>HF Cable Toolchain<br><span class="brand-sub">Sreeram Anil</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Architecture</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../system.html">The whole system</a>
+      <a href="../index.html#network">Network</a>
+      <a href="../index.html#reports">Reports</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/anilram30" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.6 4.7 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="gh-label">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="phero">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#projects">Projects</a><span class="sep">/</span><span>cableanalytics</span></div>
+    <div class="phero-top">
+      <div class="phero-letter">E</div>
+      <div style="flex:1"><h1>cableanalytics</h1><div class="phero-role">Project E · Manufacturing to physics — the predictive layer</div></div>
+      <span class="pidx">05 / 07</span>
+    </div>
+    <p class="phero-tag">Connects production-line records to measured high-frequency cable performance, and predicts one from the other.</p>
+    <div class="chips"><span class="chip"><b>240</b>production samples</span><span class="chip"><b>3</b>extrusion lines</span><span class="chip"><b>90 %</b>prediction intervals</span><span class="chip"><b>14</b>tests</span><span class="chip"><b>8 pp</b>technical report</span></div>
+    <div class="hero-cta" style="margin-bottom:0">
+      <a class="btn btn-primary" href="https://github.com/anilram30/cableanalytics" rel="noopener">Source on GitHub</a>
+      <a class="btn btn-ghost" href="../reports/cableanalytics.pdf">Technical report (8 pages)</a>
+    </div>
+  </div>
+</header>
+<section class="psec"><div class="wrap"><div class="sec-kicker">Problem</div><h2>The problem</h2><div class="prose">
+<p>A cable's high-frequency performance is decided on the extrusion line — conductor diameter, insulation
+concentricity, foaming, line speed — hours before any network analyser sees it. The laboratory measures
+the consequence; the factory sets the cause. In most organisations those two datasets never meet.</p>
+<p>If they did meet, two expensive questions would get cheap answers: <strong>which process parameter is
+costing us margin</strong>, and <strong>what will this batch measure like</strong> — before it is
+measured, or even made.</p>
+</div></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">System</div><h2>What was built</h2><div class="prose"><p>The bridge between those datasets: physics first, statistics only for
+what the physics cannot see, and an honest interval on every prediction.</p></div><div class="flow"><div class="flow-io"><b>Two datasets</b><span>extrusion-line records + inline gauge logs · measured loss curves and impedance</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Loss decomposition</b><span>α = c/√f + a√f + b·f — conductor, dielectric and DC terms separated, with covariance</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Temperature derating</b><span>material coefficients fitted across climate-chamber sweeps, points weighted by fit uncertainty</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-hi"><b>Physics-informed prediction</b><span>alloy resistivity, permittivity, foaming, geometry → predicted a, b, Z</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Data-driven correction</b><span>ridge regression on what physics misses — line effects, gauge ripple — cross-validated, boosted trees as the challenger</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-out"><b>Prediction with intervals</b><span>a, b, Z with 90 % prediction intervals, per production record</span></div></div><div class="spec"><div class="spec-col"><h5>Takes</h5><ul><li>A production dataset: 240 samples, 3 lines, 4 designs, 20 lots — nuisance factors deliberately included</li><li>Inline gauge logs (diameter against length)</li><li>Measured loss fits and impedance from cablecheck</li><li>Climate-chamber sweeps for the derating fit</li></ul></div><div class="spec-col"><h5>Produces</h5><ul><li>Predicted loss coefficients and impedance with 90 % intervals</li><li>A temperature-derating model per design</li><li>Ripple attribution: which periodic gauge structure causes which return-loss resonance</li><li>Sensitivity of performance to each process parameter</li></ul></div></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Engineering</div><h2>The hard part</h2><div class="prose">
+<p>The tempting approach — throw the whole table at a gradient-boosted model — produces impressive
+in-sample numbers and no understanding. The discipline here is the ordering: <strong>the physics model
+predicts first</strong>, from resistivity, permittivity and geometry alone; the statistical layer is
+only allowed to correct the residual. Cross-validation then answers the question that matters — does the
+correction genuinely beat physics-only, and does the black-box challenger genuinely beat either? The
+answer is reported rather than assumed, fold by fold.</p>
+<p>The subtlest piece connects geometry to resonance: a periodic diameter variation from the extrusion
+process acts as a Bragg reflector, producing a return-loss spike at exactly the frequency whose
+half-wavelength matches the gauge period. The package computes that attribution both ways — from the
+gauge log to the predicted resonance, and from a measured resonance back to the process period that
+caused it.</p>
+</div><figure class="fig"><div class="img"><img src="../assets/img/p/e-bragg.png" loading="lazy" alt="Return-loss resonance aligned with the periodic structure in the extrusion gauge log."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 01</span> &nbsp;<b>The factory, visible at 200 MHz:</b> a periodic gauge variation on the line becomes a Bragg resonance in return loss — attributed in both directions.</figcaption></figure></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Evidence</div><h2>Checked against ground truth</h2><p class="lede-line">Judged the only way a predictive model honestly can be: on samples it never saw.</p><table class="results-tbl"><thead><tr><th>What was checked</th><th>Result</th></tr></thead><tbody><tr><td>Physics-only prediction (the baseline to beat)</td><td>reported per target, per fold</td></tr><tr><td>Physics + ridge correction</td><td>beats physics-only out of sample</td></tr><tr><td>Boosted-tree challenger</td><td>reported alongside — not better enough to buy its opacity</td></tr><tr><td>90 % prediction intervals</td><td>from residual quantiles, checked by coverage</td></tr><tr><td>Derating model vs held-out temperatures</td><td>within the stated fit uncertainty</td></tr><tr><td>Ripple attribution</td><td>gauge period ↔ resonance frequency, both directions</td></tr></tbody></table><div class="figrow"><figure class="fig"><div class="img"><img src="../assets/img/p/e-correlation.png" loading="lazy" alt="Predicted against measured loss coefficient with intervals for held-out samples."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 02</span> &nbsp;<b>Predicted vs measured, out of sample:</b> the intervals are the honest part — every point carries one.</figcaption></figure><figure class="fig"><div class="img"><img src="../assets/img/p/e-derating.png" loading="lazy" alt="Fitted derating of loss with temperature."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 03</span> &nbsp;<b>Temperature, separated by mechanism:</b> conductor and dielectric losses derate differently, and the fit keeps them apart.</figcaption></figure></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Declared limits</div><h2>What it does not claim</h2><p class="lede-line">From the report's own limitations section:</p><ul class="limits">
+<li>The production dataset is generated — structured like real extrusion data, nuisance factors included, but synthetic.</li>
+<li>Intervals are marginal per coefficient; joint prediction regions are not attempted.</li>
+<li>The physics layer is transmission-line analytics, not electromagnetic field simulation.</li>
+</ul></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Context</div><h2>Where it sits in the toolchain</h2><div class="prose">
+<p>Fed by <a href="cablecheck.html">cablecheck</a>'s measured quantities and consumed at the very top of
+the stack: when a <a href="linktwin.html">linktwin</a> harness names a production sample as its cable,
+this package predicts the coefficients — and its 90&nbsp;% intervals become the uncertainty the twin's
+Monte Carlo draws from. A cable that exists only as a row of process data becomes a link element with
+error bars.</p>
+</div></div></section>
+<div class="wrap pn">
+  <a href="zprofile.html"><span class="dir">← Previous</span><span class="name">D · zprofile</span></a>
+  <a href="labplatform.html" class="next"><span class="dir">Next →</span><span class="name">F · labplatform</span></a>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html" style="margin-bottom:12px">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+            <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span>HF Cable Toolchain</span>
+        </a>
+        <p style="color:var(--text-3);font-size:.88rem;max-width:42ch">
+          Measurement evaluation, laboratory automation, impedance reconstruction, production analytics,
+          multi-site metrology and a full-link digital twin for automotive Ethernet cables.
+        </p>
+      </div>
+      <div>
+        <h5>Projects</h5>
+        <div class="foot-links"><a href="../projects/cablecheck.html">A &middot; cablecheck</a>
+<a href="../projects/labauto.html">B &middot; labauto</a>
+<a href="../projects/shieldeval.html">C &middot; shieldeval</a>
+<a href="../projects/zprofile.html">D &middot; zprofile</a>
+<a href="../projects/cableanalytics.html">E &middot; cableanalytics</a>
+<a href="../projects/labplatform.html">F &middot; labplatform</a>
+<a href="../projects/linktwin.html">G &middot; linktwin</a></div>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <div class="foot-links">
+          <a href="https://github.com/anilram30" rel="noopener">GitHub profile</a>
+          <a href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">Toolchain hub</a>
+          <a href="../system.html">From measurement to design</a>
+          <a href="mailto:sreeramanil30@gmail.com">sreeramanil30@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sreeram Anil · Released under the MIT licence</span>
+      <span>All measurement data on this site is synthetic</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

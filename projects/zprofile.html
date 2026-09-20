@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zprofile — HF Cable Toolchain</title>
+<meta name="description" content="Reconstructs a cable's impedance profile along its physical length from frequency-domain measurements.">
+<meta name="author" content="Sreeram Anil">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M6 20c4-9 6-9 10 0s6 9 10 0' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+        <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>HF Cable Toolchain<br><span class="brand-sub">Sreeram Anil</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Architecture</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../system.html">The whole system</a>
+      <a href="../index.html#network">Network</a>
+      <a href="../index.html#reports">Reports</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/anilram30" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.6 4.7 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="gh-label">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="phero">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#projects">Projects</a><span class="sep">/</span><span>zprofile</span></div>
+    <div class="phero-top">
+      <div class="phero-letter">D</div>
+      <div style="flex:1"><h1>zprofile</h1><div class="phero-role">Project D · An inverse-problem algorithm on the foundation layer</div></div>
+      <span class="pidx">04 / 07</span>
+    </div>
+    <p class="phero-tag">Reconstructs a cable's impedance profile along its physical length from frequency-domain measurements.</p>
+    <div class="chips"><span class="chip"><b>+4 to +9 Ω</b>bias of the plain transform</span><span class="chip"><b>±0.3 Ω</b>after reconstruction</span><span class="chip"><b>5</b>reference cables</span><span class="chip"><b>14</b>tests</span><span class="chip"><b>17 pp</b>technical report</span></div>
+    <div class="hero-cta" style="margin-bottom:0">
+      <a class="btn btn-primary" href="https://github.com/anilram30/zprofile" rel="noopener">Source on GitHub</a>
+      <a class="btn btn-ghost" href="../reports/zprofile.pdf">Technical report (17 pages)</a>
+    </div>
+  </div>
+</header>
+<section class="psec"><div class="wrap"><div class="sec-kicker">Problem</div><h2>The problem</h2><div class="prose">
+<p>A frequency-domain measurement says <em>how much</em> is wrong with a cable; it cannot say
+<em>where</em>. For a manufacturer, the difference matters enormously: "return loss fails at
+391&nbsp;MHz" starts an investigation, while "there is a defect 6.0&nbsp;m from the near end, 0.25&nbsp;Ω
+ripple every 26&nbsp;cm on top" ends one.</p>
+<p>The obvious tool — an inverse FFT into the time domain, as a VNA's "time-domain option" does — is
+quietly biased: on a lossy line the step response keeps rising as √t, so a 15&nbsp;m automotive pair
+reads <strong>4 to 9&nbsp;Ω high</strong> by the far end. Real TDR instruments show the same slope. The
+instrument is not lying; the plain transform is just not the right inverse.</p>
+</div></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">System</div><h2>What was built</h2><div class="prose"><p>A reconstruction pipeline in which every processing choice is explicit,
+and the one that matters most — undoing loss — is an algorithm, not a correction factor.</p></div><div class="flow"><div class="flow-io"><b>S_dd11(f), and S_dd21(f) when available</b><span>the differential reflection of the cable, fixture already removed</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>DC anchoring</b><span>four estimators; the default ties Γ(0) to the cable's own loop resistance</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Windowing + rise-time matching</b><span>a catalogue of windows with numerically computed rise time, side lobes and overshoot at the actual bandwidth</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Loss model</b><span>α = c/√f + a√f + b·f fitted from transmission, with a consistent complex Z₀(f) and γ(f)</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-hi"><b>Loss-aware layer peeling</b><span>each reflection referred back through the attenuation and delay of everything the wave already crossed — with regularised inverse propagation</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Connector masking + features</b><span>fixed masks and a settling detector; ripple period and amplitude; defect position, depth, extent</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-out"><b>Z(x): impedance against position</b><span>with deviation statistics against the nominal impedance</span></div></div><div class="spec"><div class="spec-col"><h5>Takes</h5><ul><li>Differential S-parameters from cablecheck's pipeline</li><li>The cable's physical length and, optionally, its loop resistance</li><li>A window and bandwidth choice — with the trade-off quantified</li></ul></div><div class="spec-col"><h5>Produces</h5><ul><li>Characteristic impedance metre by metre along the cable</li><li>Ripple period and amplitude — the stranding lay, made visible</li><li>Defect position, depth and extent</li><li>A sensitivity budget: how each choice moves each statistic</li></ul></div></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Engineering</div><h2>The hard part</h2><div class="prose">
+<p>Layer peeling walks the cable cell by cell: read the first reflection, deduce the first impedance
+step, remove that interface's effect from everything that follows, repeat. On a lossless line the
+recursion is textbook. On a real line, every later echo has been attenuated and dispersed by everything
+before it, so the algorithm must <strong>amplify each buried reflection by exactly the loss it
+suffered</strong> — and amplification of a measured signal amplifies noise with it. The reconstruction
+therefore regularises the inverse propagation (Wiener-style, with an adaptive read time) and corrects
+each cell's read against a lossy remainder — the difference between an algorithm that works on paper and
+one that survives −85&nbsp;dB of instrument noise.</p>
+<p>Just as important is what surrounds the algorithm: a <strong>sensitivity budget</strong>. Every
+processing choice — window, bandwidth, DC estimator, mask — is varied, and the shift of every reported
+statistic is tabulated. The result does not just say "the mean is 100.2&nbsp;Ω"; it says how much of
+that could be the processing.</p>
+</div><figure class="fig"><div class="img"><img src="../assets/img/p/d-defect.png" loading="lazy" alt="Truth, plain transform and loss-aware reconstruction of a 15 m cable with ripple and a defect at 6 m."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 01</span> &nbsp;<b>The whole argument in one figure:</b> the plain transform (biased, rising) against the loss-aware reconstruction (flat, on truth), with the planted defect recovered at 6.0 m.</figcaption></figure></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Evidence</div><h2>Checked against ground truth</h2><p class="lede-line">Five synthetic reference cables with exactly known profiles, plus a simulated TDR instrument as an independent path.</p><table class="results-tbl"><thead><tr><th>What was checked</th><th>Result</th></tr></thead><tbody><tr><td>Plain transform, 15 m automotive pair</td><td>biased +4 to +9 Ω by the far end</td></tr><tr><td>Loss-aware reconstruction, same cables</td><td>within a few tenths of an ohm</td></tr><tr><td>Ripple period and amplitude</td><td>recovered once bandwidth resolves them</td></tr><tr><td>Defect position, depth and extent</td><td>recovered — position to the resolution cell</td></tr><tr><td>Simulated 35 ps TDR instrument (independent path)</td><td>same story: instrument shows the bias, reconstruction removes it</td></tr><tr><td>Deviation statistics vs nominal</td><td>implemented and reported per profile</td></tr></tbody></table><div class="figrow"><figure class="fig"><div class="img"><img src="../assets/img/p/d-lossy.png" loading="lazy" alt="Reconstruction of a thin, lossy 15 m cable where the plain transform fails badly."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 02</span> &nbsp;<b>The hard case:</b> a thin, lossy pair — the plain transform is unusable; the reconstruction holds.</figcaption></figure><figure class="fig"><div class="img"><img src="../assets/img/p/d-sensitivity.png" loading="lazy" alt="Sensitivity of the reported statistics to each processing choice at 600 MHz."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 03</span> &nbsp;<b>The honest table:</b> what each processing choice does to each number. Few tools publish this.</figcaption></figure></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Declared limits</div><h2>What it does not claim</h2><p class="lede-line">From the report's own limitations section:</p><ul class="limits">
+<li>Resolution is bandwidth-bound: features shorter than the resolved rise distance blur, stated per sweep.</li>
+<li>The loss model is smooth (√f + f); strongly resonant structures would need more.</li>
+<li>Validation is against synthetic truth and a simulated instrument — the same honest boundary as the whole toolchain.</li>
+</ul></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Context</div><h2>Where it sits in the toolchain</h2><div class="prose">
+<p>Built directly on <a href="cablecheck.html">cablecheck</a>'s network layer — and it repaid the debt:
+building this project exposed a half-cell TDR bug in the foundation, worth up to 1&nbsp;Ω, now fixed and
+pinned by test. <a href="labauto.html">labauto</a> runs it as an analyser on every archived measurement,
+and <a href="cablecheck.html">cablecheck</a> can use it as its impedance-profile engine
+(<code>--profile-engine zprofile</code>) when installed.</p>
+</div></div></section>
+<div class="wrap pn">
+  <a href="shieldeval.html"><span class="dir">← Previous</span><span class="name">C · shieldeval</span></a>
+  <a href="cableanalytics.html" class="next"><span class="dir">Next →</span><span class="name">E · cableanalytics</span></a>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html" style="margin-bottom:12px">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+            <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span>HF Cable Toolchain</span>
+        </a>
+        <p style="color:var(--text-3);font-size:.88rem;max-width:42ch">
+          Measurement evaluation, laboratory automation, impedance reconstruction, production analytics,
+          multi-site metrology and a full-link digital twin for automotive Ethernet cables.
+        </p>
+      </div>
+      <div>
+        <h5>Projects</h5>
+        <div class="foot-links"><a href="../projects/cablecheck.html">A &middot; cablecheck</a>
+<a href="../projects/labauto.html">B &middot; labauto</a>
+<a href="../projects/shieldeval.html">C &middot; shieldeval</a>
+<a href="../projects/zprofile.html">D &middot; zprofile</a>
+<a href="../projects/cableanalytics.html">E &middot; cableanalytics</a>
+<a href="../projects/labplatform.html">F &middot; labplatform</a>
+<a href="../projects/linktwin.html">G &middot; linktwin</a></div>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <div class="foot-links">
+          <a href="https://github.com/anilram30" rel="noopener">GitHub profile</a>
+          <a href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">Toolchain hub</a>
+          <a href="../system.html">From measurement to design</a>
+          <a href="mailto:sreeramanil30@gmail.com">sreeramanil30@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sreeram Anil · Released under the MIT licence</span>
+      <span>All measurement data on this site is synthetic</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>labplatform — HF Cable Toolchain</title>
+<meta name="description" content="Compares laboratories against each other, quantifies the uncertainty of every result, and detects measurement-system drift.">
+<meta name="author" content="Sreeram Anil">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M6 20c4-9 6-9 10 0s6 9 10 0' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+        <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>HF Cable Toolchain<br><span class="brand-sub">Sreeram Anil</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Architecture</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../system.html">The whole system</a>
+      <a href="../index.html#network">Network</a>
+      <a href="../index.html#reports">Reports</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/anilram30" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.6 4.7 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="gh-label">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="phero">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#projects">Projects</a><span class="sep">/</span><span>labplatform</span></div>
+    <div class="phero-top">
+      <div class="phero-letter">F</div>
+      <div style="flex:1"><h1>labplatform</h1><div class="phero-role">Project F · The trust layer above every laboratory</div></div>
+      <span class="pidx">06 / 07</span>
+    </div>
+    <p class="phero-tag">Compares laboratories against each other, quantifies the uncertainty of every result, and detects measurement-system drift.</p>
+    <div class="chips"><span class="chip"><b>4</b>sites · 3 countries</span><span class="chip"><b>200</b>measurement jobs</span><span class="chip"><b>3,610</b>results ingested</span><span class="chip"><b>48</b>calibration verifications</span><span class="chip"><b>16</b>tests</span><span class="chip"><b>11 pp</b>technical report</span></div>
+    <div class="hero-cta" style="margin-bottom:0">
+      <a class="btn btn-primary" href="https://github.com/anilram30/labplatform" rel="noopener">Source on GitHub</a>
+      <a class="btn btn-ghost" href="../reports/labplatform.pdf">Technical report (11 pages)</a>
+    </div>
+  </div>
+</header>
+<section class="psec"><div class="wrap"><div class="sec-kicker">Problem</div><h2>The problem</h2><div class="prose">
+<p>Two laboratories measure the same cable. Roth says 7.907&nbsp;dB; Changzhou says 7.923&nbsp;dB. Is
+that a problem? With only the two numbers, the question is unanswerable — and organisations answer it
+anyway, with meetings.</p>
+<p>The correct answer requires each number to carry its <strong>uncertainty budget</strong>, so the
+comparison becomes a statistic instead of an argument: the sites differ by 0.016&nbsp;dB against an
+expanded uncertainty of the difference several times larger — <em>not distinguishable</em>. And beyond
+any single comparison: is a site drifting month over month, which calibration event caused it, and which
+already-issued results does a failed verification put in doubt?</p>
+</div></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">System</div><h2>What was built</h2><div class="prose"><p>A metrology platform over any number of labauto laboratories — one
+canonical data model, and the full apparatus of interlaboratory comparison on top.</p></div><div class="flow"><div class="flow-io"><b>Sealed archives from every site</b><span>raw files, sidecars, manifests — refused jobs included, because a network that cannot see its refusal rate cannot manage it</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Canonical model</b><span>sites · instruments · calibrations · samples · procedures · runs · results · traces · verifications · events</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-hi"><b>Uncertainty budgets</b><span>repeatability, reproducibility, calibration, fixture, instrument, environment, noise, resolution — GUM-combined, stored with every result</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-split"><div><b>Round robin</b><span>E_n · ζ · z, Cox consensus</span></div><div><b>R&amp;R</b><span>ISO 5725-2 nested ANOVA</span></div><div><b>Control charts</b><span>Shewhart + EWMA, WE rules</span></div></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Drift detection</b><span>trend, change point, EWMA — with root cause attributed against calibration, environment and operator records</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-out"><b>Trust cards + evidence packs</b><span>value, budget, provenance, standing in its round, status — and the suspect list when a verification fails</span></div></div><div class="spec"><div class="spec-col"><h5>Takes</h5><ul><li>labauto archives from any number of sites</li><li>The circulating artefact's round-robin schedule</li><li>Check-standard certificates for calibration verification</li></ul></div><div class="spec-col"><h5>Produces</h5><ul><li>An uncertainty budget on every scalar result</li><li>Compatibility statements per site, per quantity, per round</li><li>Repeatability, intermediate precision and reproducibility for the network</li><li>Drift alerts with attributed root cause</li><li>Retrospective suspect lists after a failed verification</li><li>A self-contained dashboard</li></ul></div></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Engineering</div><h2>The hard part</h2><div class="prose">
+<p>The uncertainty budget is the engineering heart, and its hardest entries are the ones naive budgets
+get wrong. Reflection quantities cannot inherit the transmission calibration's bound: a −27&nbsp;dB
+return loss measured against a −52&nbsp;dB residual directivity floor carries close to a decibel of
+uncertainty, and the budget says so instead of flattering itself. Reproducibility must not double-count
+what calibration already covers, so only the between-round variance the calibration bound cannot explain
+enters. Every result is referred to 23&nbsp;°C with the temperature coefficient's own uncertainty
+propagated.</p>
+<p>The payoff is the demonstration's planted fault: one site's setup degrades quietly from round&nbsp;7.
+The platform sees it on the site's verification chart <strong>three rounds before</strong> the
+laboratory's own gate refuses to measure — and when the verification finally fails, it walks the chain
+backwards and names the five results taken under that calibration as suspect. Detection, then
+retrospective traceability.</p>
+</div><figure class="fig"><div class="img"><img src="../assets/img/p/f-drift.png" loading="lazy" alt="Per-site longitudinal series with fitted trend, change point and EWMA signals."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 01</span> &nbsp;<b>The planted fault, caught early:</b> drift analysis on each site's artefact series — trend, change point and EWMA — with the root cause attributed to the records, not guessed.</figcaption></figure></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Evidence</div><h2>Checked against ground truth</h2><p class="lede-line">Statistics checked against the standards' own worked values; the network checked by simulating one with a known fault.</p><table class="results-tbl"><thead><tr><th>What was checked</th><th>Result</th></tr></thead><tbody><tr><td>E_n against Cox consensus, IL @ 600 MHz, all sites</td><td>|E_n| ≤ 0.22 — all compatible</td></tr><tr><td>Nested ANOVA (ISO 5725-2), Cochran + Grubbs screening</td><td>matches worked reference values</td></tr><tr><td>Control charts</td><td>phase-I/II split, Western Electric rules on rational subgroups</td></tr><tr><td>Planted degradation at round 7</td><td>flagged 3 rounds before the gate refused</td></tr><tr><td>Failed verification → suspect results</td><td>the 5 affected runs identified</td></tr><tr><td>Network scale exercised</td><td>4 sites · 10 rounds · 200 jobs · 3,610 results</td></tr></tbody></table><div class="figrow"><figure class="fig"><div class="img"><img src="../assets/img/p/f-budget.png" loading="lazy" alt="Uncertainty budget split per site and site values against the consensus with expanded uncertainty."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 02</span> &nbsp;<b>Why Roth is trusted more than Kitzingen:</b> the budgets differ, and the comparison uses them.</figcaption></figure><figure class="fig"><div class="img"><img src="../assets/img/p/f-en.png" loading="lazy" alt="E_n scores against frequency for each site."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 03</span> &nbsp;<b>Compatibility across the band:</b> E_n per frequency — agreement is not a single-number claim.</figcaption></figure></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Declared limits</div><h2>What it does not claim</h2><p class="lede-line">From the report's own limitations section:</p><ul class="limits">
+<li>The four laboratories are simulated (labauto's instrument models); the statistics are exercised on data whose truth is known.</li>
+<li>Mismatch between test-port and cable impedance is declared unevaluated in the budget, not silently absorbed.</li>
+<li>Root-cause attribution is correlational against the records — it names the coinciding change, not a proven mechanism.</li>
+</ul></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Context</div><h2>Where it sits in the toolchain</h2><div class="prose">
+<p>This is what <a href="labauto.html">labauto</a>'s sealed archives exist for: the platform ingests any
+number of them into one comparable whole. Its budgets set the default cable uncertainties in
+<a href="linktwin.html">linktwin</a>'s Monte Carlo, and its trust cards are the provenance a link
+verdict can cite when someone asks <em>"measured where, under what?"</em></p>
+</div></div></section>
+<div class="wrap pn">
+  <a href="cableanalytics.html"><span class="dir">← Previous</span><span class="name">E · cableanalytics</span></a>
+  <a href="linktwin.html" class="next"><span class="dir">Next →</span><span class="name">G · linktwin</span></a>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html" style="margin-bottom:12px">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+            <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span>HF Cable Toolchain</span>
+        </a>
+        <p style="color:var(--text-3);font-size:.88rem;max-width:42ch">
+          Measurement evaluation, laboratory automation, impedance reconstruction, production analytics,
+          multi-site metrology and a full-link digital twin for automotive Ethernet cables.
+        </p>
+      </div>
+      <div>
+        <h5>Projects</h5>
+        <div class="foot-links"><a href="../projects/cablecheck.html">A &middot; cablecheck</a>
+<a href="../projects/labauto.html">B &middot; labauto</a>
+<a href="../projects/shieldeval.html">C &middot; shieldeval</a>
+<a href="../projects/zprofile.html">D &middot; zprofile</a>
+<a href="../projects/cableanalytics.html">E &middot; cableanalytics</a>
+<a href="../projects/labplatform.html">F &middot; labplatform</a>
+<a href="../projects/linktwin.html">G &middot; linktwin</a></div>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <div class="foot-links">
+          <a href="https://github.com/anilram30" rel="noopener">GitHub profile</a>
+          <a href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">Toolchain hub</a>
+          <a href="../system.html">From measurement to design</a>
+          <a href="mailto:sreeramanil30@gmail.com">sreeramanil30@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sreeram Anil · Released under the MIT licence</span>
+      <span>All measurement data on this site is synthetic</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

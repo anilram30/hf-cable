@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shieldeval — HF Cable Toolchain</title>
+<meta name="description" content="Reconstructs a legacy-style cable-shielding tool from its outputs bit-for-bit, then modernises it.">
+<meta name="author" content="Sreeram Anil">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M6 20c4-9 6-9 10 0s6 9 10 0' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+        <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>HF Cable Toolchain<br><span class="brand-sub">Sreeram Anil</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Architecture</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../system.html">The whole system</a>
+      <a href="../index.html#network">Network</a>
+      <a href="../index.html#reports">Reports</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/anilram30" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.6 4.7 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="gh-label">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="phero">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#projects">Projects</a><span class="sep">/</span><span>shieldeval</span></div>
+    <div class="phero-top">
+      <div class="phero-letter">C</div>
+      <div style="flex:1"><h1>shieldeval</h1><div class="phero-role">Project C · Legacy reconstruction — an independent branch of the toolchain</div></div>
+      <span class="pidx">03 / 07</span>
+    </div>
+    <p class="phero-tag">Reconstructs a legacy-style cable-shielding tool from its outputs bit-for-bit, then modernises it.</p>
+    <div class="chips"><span class="chip"><b>6/6</b>archived results, byte-identical</span><span class="chip"><b>Q1–Q9</b>documented quirks</span><span class="chip"><b>13</b>tests</span><span class="chip"><b>v4.0.0</b>continuing the legacy lineage</span><span class="chip"><b>10 pp</b>technical report</span></div>
+    <div class="hero-cta" style="margin-bottom:0">
+      <a class="btn btn-primary" href="https://github.com/anilram30/shieldeval" rel="noopener">Source on GitHub</a>
+      <a class="btn btn-ghost" href="../reports/shieldeval.pdf">Technical report (10 pages)</a>
+    </div>
+  </div>
+</header>
+<section class="psec"><div class="wrap"><div class="sec-kicker">Problem</div><h2>The problem</h2><div class="prose">
+<p>Every engineering department has one: a decades-old tool that everyone depends on and no one fully
+understands. Its numbers are written into specifications and archived test reports. You cannot fix it,
+because "fixed" means "different", and different invalidates history. You cannot leave it, because its
+approximations are wrong for the fixtures you use now.</p>
+<p>This project is the disciplined way out, demonstrated on a shield-evaluation tool: transfer impedance
+and screening attenuation from triaxial and line-injection measurements.</p>
+</div></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">System</div><h2>What was built</h2><div class="prose"><p>Not one implementation but two, plus the bridge between them — so history
+stays reproducible while the future stops inheriting the past's approximations.</p></div><div class="flow"><div class="flow-io"><b>Legacy behaviour</b><span>the v3 tool and its archive of raw files and results</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Characterise</b><span>read raw formats, fit the method's behaviour, catalogue its quirks — Q1 through Q9, each documented</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-hi"><b>Reproduce, byte for byte</b><span>shieldeval.legacy — a compatibility mode whose output is indistinguishable from v3's</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Modern method</b><span>full triaxial and line-injection models, correct terminations, an uncertainty budget</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-hi"><b>Quantify the difference</b><span>legacy vs modern, per fixture and per frequency — migration becomes a number</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-out"><b>New fixtures, new data</b><span>fixture profiles the legacy tool could never describe</span></div></div><div class="spec"><div class="spec-col"><h5>Takes</h5><ul><li>Archived raw measurement and calibration files (.dat / .cal)</li><li>The archived v3 results, as the ground truth for compatibility</li><li>Fixture profiles: tube-in-tube, line injection, connectors</li></ul></div><div class="spec-col"><h5>Produces</h5><ul><li>Transfer impedance Z_T and screening attenuation a_S — by both methods</li><li>Byte-identical legacy output on demand, forever</li><li>A quantified legacy-to-modern difference per fixture and frequency</li><li>Class limits evaluation with margins</li></ul></div></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Engineering</div><h2>The hard part</h2><div class="prose">
+<p>Byte-identical is a merciless target. It is not enough to implement the right physics — you must
+implement the <em>wrong</em> physics precisely: the legacy tool's fixed-point rounding, its off-by-one
+frequency indexing, its hard-coded fixture constant, its habit of clamping a noise floor before rather
+than after averaging. Each quirk is isolated in a register, Q1 to Q9, with a test — so the compatibility
+mode is not a fork frozen in amber but a documented, maintainable statement of what the old tool did.</p>
+<p><strong>Honesty note, stated on the repository and in the report:</strong> the real legacy program was
+not available. The stand-in was written for this project in the style of a 2016 script, with realistic
+quirks, and the archive was generated from known shield physics. The <em>method</em> — characterise,
+reproduce exactly, modernise beside it, quantify the difference — is the deliverable, and it transfers
+unchanged to a real legacy tool.</p>
+</div></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Evidence</div><h2>Checked against ground truth</h2><p class="lede-line">Two different kinds of proof, one per implementation.</p><table class="results-tbl"><thead><tr><th>What was checked</th><th>Result</th></tr></thead><tbody><tr><td>Compatibility mode vs the archived v3 results</td><td>6 / 6 byte-identical</td></tr><tr><td>Each quirk Q1–Q9 disabled individually</td><td>output diverges — every quirk demonstrably load-bearing</td></tr><tr><td>Modern method vs analytic single-braid physics</td><td>agrees across the band</td></tr><tr><td>Legacy vs modern difference</td><td>reported per fixture, per frequency — the migration cost, quantified</td></tr></tbody></table><div class="figrow"><figure class="fig"><div class="img"><img src="../assets/img/p/c-braidfoil.png" loading="lazy" alt="Transfer impedance of a braid-plus-foil shield: legacy and modern methods against the generating model."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 01</span> &nbsp;<b>Braid + foil shield:</b> where the legacy approximation holds, and where the modern method separates from it.</figcaption></figure><figure class="fig"><div class="img"><img src="../assets/img/p/c-doublebraid.png" loading="lazy" alt="Double-braid shield evaluation across frequency."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 02</span> &nbsp;<b>Double braid:</b> the optimised-shield case both methods must get right — and the class limit they are judged against.</figcaption></figure></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Declared limits</div><h2>What it does not claim</h2><p class="lede-line">From the report's own limitations section:</p><ul class="limits">
+<li>The legacy tool is a constructed stand-in; the equivalence proof is real, its target is synthetic.</li>
+<li>Shield physics is analytic (braid and foil models), not full-wave electromagnetic simulation.</li>
+<li>Uncertainty is budgeted for the modern method only — the legacy method never stated one, which is part of the point.</li>
+</ul></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Context</div><h2>Where it sits in the toolchain</h2><div class="prose">
+<p>Deliberately independent: it shares no code path with the measurement chain, because shield
+evaluation is a different instrument setup answering a different question. What it shares is the
+toolchain's discipline — versioned methods, quantified differences, declared limitations — and its
+version number, v4.0.0, continues the legacy tool's own lineage so that any result can be attributed to
+a named method version rather than to "the old script".</p>
+</div></div></section>
+<div class="wrap pn">
+  <a href="labauto.html"><span class="dir">← Previous</span><span class="name">B · labauto</span></a>
+  <a href="zprofile.html" class="next"><span class="dir">Next →</span><span class="name">D · zprofile</span></a>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html" style="margin-bottom:12px">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+            <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span>HF Cable Toolchain</span>
+        </a>
+        <p style="color:var(--text-3);font-size:.88rem;max-width:42ch">
+          Measurement evaluation, laboratory automation, impedance reconstruction, production analytics,
+          multi-site metrology and a full-link digital twin for automotive Ethernet cables.
+        </p>
+      </div>
+      <div>
+        <h5>Projects</h5>
+        <div class="foot-links"><a href="../projects/cablecheck.html">A &middot; cablecheck</a>
+<a href="../projects/labauto.html">B &middot; labauto</a>
+<a href="../projects/shieldeval.html">C &middot; shieldeval</a>
+<a href="../projects/zprofile.html">D &middot; zprofile</a>
+<a href="../projects/cableanalytics.html">E &middot; cableanalytics</a>
+<a href="../projects/labplatform.html">F &middot; labplatform</a>
+<a href="../projects/linktwin.html">G &middot; linktwin</a></div>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <div class="foot-links">
+          <a href="https://github.com/anilram30" rel="noopener">GitHub profile</a>
+          <a href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">Toolchain hub</a>
+          <a href="../system.html">From measurement to design</a>
+          <a href="mailto:sreeramanil30@gmail.com">sreeramanil30@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sreeram Anil · Released under the MIT licence</span>
+      <span>All measurement data on this site is synthetic</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

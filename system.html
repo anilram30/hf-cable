@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From measurement to design — HF Cable Toolchain</title>
+<meta name="description" content="One cable sample followed through all seven packages of the toolchain, from the raw instrument file to a link verdict with a probability.">
+<meta name="author" content="Sreeram Anil">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M6 20c4-9 6-9 10 0s6 9 10 0' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="./index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+        <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>HF Cable Toolchain<br><span class="brand-sub">Sreeram Anil</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="./index.html#pipeline">Architecture</a>
+      <a href="./index.html#projects">Projects</a>
+      <a href="./system.html">The whole system</a>
+      <a href="./index.html#network">Network</a>
+      <a href="./index.html#reports">Reports</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/anilram30" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.6 4.7 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="gh-label">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="phero">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>The whole system</span></div>
+    <h1 style="font-family:var(--sans);font-size:clamp(2rem,4.4vw,3rem);letter-spacing:-.03em">From measurement to design</h1>
+    <p class="phero-tag" style="max-width:68ch">One real sample from the demonstration network — barcode
+    <code>C1000T1A&#8209;L24071&#8209;0041</code>, fifteen metres of single-pair automotive Ethernet cable — followed
+    through every layer of the toolchain. Every number on this page comes from actually running the code.</p>
+  </div>
+</header>
+
+<section class="psec">
+  <div class="wrap"><div class="prose">
+    <p style="font-size:1.05rem"><strong>The question at the end is not "what did this cable measure?"</strong>
+    It is: a harness built from this cable — twelve metres of it, two headers, at 105&nbsp;°C — will it pass
+    1000BASE-T1, what does the receiver see, and how sure are we? Here is how that answer is assembled.</p>
+  </div></div>
+</section>
+<section class="psec">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      
+      <div>
+        <span style="font-family:var(--mono);font-weight:620;font-size:1.1rem">RAW-INSTRUMENT-FILE</span>
+        <div style="font-size:.8rem;color:var(--text-3)">Where everything starts</div>
+      </div>
+    </div>
+    <div class="prose"><p>A vector network analyser sweeps the pair from 1 to 600&nbsp;MHz, 1,201 points, and writes
+  <code>pairA.s4p</code> — sixteen complex numbers per frequency. At this moment the file proves nothing:
+  it does not say the calibration was valid, the sample was the one on the label, or the data is even
+  physically possible.</p></div>
+    <div class="numbers" style="margin:22px 0 0;max-width:760px"><div class="numbers-row" style="grid-template-columns:repeat(4,1fr)"><div class="stat"><div class="stat-n">1–600</div><div class="stat-l">MHz sweep</div></div><div class="stat"><div class="stat-n">1,201</div><div class="stat-l">frequency points</div></div><div class="stat"><div class="stat-n">16</div><div class="stat-l">complex S-parameters / point</div></div><div class="stat"><div class="stat-n">0</div><div class="stat-l">claims it can support, yet</div></div></div></div>
+  </div>
+</section>
+<div style="display:grid;place-items:center;color:var(--border-strong)"><svg width="16" height="34" viewBox="0 0 16 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v29M2 25l6 6 6-6"/></svg></div><section class="psec">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div class="phero-letter" style="width:44px;height:44px;font-size:1.25rem;border-radius:12px">B</div>
+      <div>
+        <a href="projects/labauto.html" style="font-family:var(--mono);font-weight:620;font-size:1.1rem">labauto</a>
+        <div style="font-size:.8rem;color:var(--text-3)">The laboratory refuses, validates, seals</div>
+      </div>
+    </div>
+    <div class="prose"><p>The barcode's check digit is verified against the registry. The calibration gate checks age,
+  temperature drift and the last verification against a check standard — <strong>0.035&nbsp;dB worst
+  deviation, pass</strong> — before the instrument is allowed to sweep. Afterwards, validation interrogates
+  the data itself: passivity, reciprocity, trace noise, electrical length against the registry's fifteen
+  metres, high-frequency loss against the DC loop resistance. Verdict: <strong>trusted</strong>. The raw
+  file, every check and the full instrument state are sealed into an archive under SHA-256.</p></div>
+    <div class="numbers" style="margin:22px 0 0;max-width:760px"><div class="numbers-row" style="grid-template-columns:repeat(4,1fr)"><div class="stat"><div class="stat-n">9</div><div class="stat-l">validation checks</div></div><div class="stat"><div class="stat-n">0.035 dB</div><div class="stat-l">calibration verification</div></div><div class="stat"><div class="stat-n">trusted</div><div class="stat-l">trust decision</div></div><div class="stat"><div class="stat-n">SHA-256</div><div class="stat-l">sealed manifest</div></div></div></div>
+  </div>
+</section>
+<div style="display:grid;place-items:center;color:var(--border-strong)"><svg width="16" height="34" viewBox="0 0 16 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v29M2 25l6 6 6-6"/></svg></div><section class="psec">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div class="phero-letter" style="width:44px;height:44px;font-size:1.25rem;border-radius:12px">A</div>
+      <div>
+        <a href="projects/cablecheck.html" style="font-family:var(--mono);font-weight:620;font-size:1.1rem">cablecheck</a>
+        <div style="font-size:.8rem;color:var(--text-3)">From S-parameters to an engineering verdict</div>
+      </div>
+    </div>
+    <div class="prose"><p>The sealed data goes through the foundation layer: mixed-mode decomposition, twelve quantities, the
+  1000BASE-T1 link-segment limit lines. The sample <strong>passes with +0.25&nbsp;dB of margin</strong>,
+  thinnest at the low-frequency end where DC resistance meets a tight limit — knowledge that will matter
+  four stages from now.</p></div>
+    <div class="numbers" style="margin:22px 0 0;max-width:760px"><div class="numbers-row" style="grid-template-columns:repeat(4,1fr)"><div class="stat"><div class="stat-n">PASS</div><div class="stat-l">verdict</div></div><div class="stat"><div class="stat-n">+0.25 dB</div><div class="stat-l">headline margin</div></div><div class="stat"><div class="stat-n">12+</div><div class="stat-l">quantities evaluated</div></div><div class="stat"><div class="stat-n">1</div><div class="stat-l">database row, with provenance</div></div></div></div>
+  </div>
+</section>
+<div style="display:grid;place-items:center;color:var(--border-strong)"><svg width="16" height="34" viewBox="0 0 16 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v29M2 25l6 6 6-6"/></svg></div><section class="psec">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div class="phero-letter" style="width:44px;height:44px;font-size:1.25rem;border-radius:12px">D</div>
+      <div>
+        <a href="projects/zprofile.html" style="font-family:var(--mono);font-weight:620;font-size:1.1rem">zprofile</a>
+        <div style="font-size:.8rem;color:var(--text-3)">Where along the cable, not just how much</div>
+      </div>
+    </div>
+    <div class="prose"><p>The same reflection data, inverted: loss-aware layer peeling turns S<sub>dd11</sub>(f) into impedance
+  against position. For this sample the profile is clean — mean on nominal, the stranding lay visible as a
+  gentle ripple, no defect. For its quarantined sibling in the same batch, this is the layer that would say
+  <em>where</em>.</p></div>
+    <figure class="fig"><div class="img"><img src="./assets/img/p/d-defect.png" loading="lazy" alt="Impedance against position for a cable with ripple and a planted defect."></div><figcaption>What this layer produces when something <b>is</b> wrong: a sibling profile with ripple and a defect located at 6.0 m.</figcaption></figure>
+  </div>
+</section>
+<div style="display:grid;place-items:center;color:var(--border-strong)"><svg width="16" height="34" viewBox="0 0 16 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v29M2 25l6 6 6-6"/></svg></div><section class="psec">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div class="phero-letter" style="width:44px;height:44px;font-size:1.25rem;border-radius:12px">F</div>
+      <div>
+        <a href="projects/labplatform.html" style="font-family:var(--mono);font-weight:620;font-size:1.1rem">labplatform</a>
+        <div style="font-size:.8rem;color:var(--text-3)">How much can this number be trusted?</div>
+      </div>
+    </div>
+    <div class="prose"><p>The result joins 3,609 others from four laboratories in three countries. It gets an uncertainty
+  budget — calibration, repeatability, fixture, environment, noise — and a standing: Roth's value on the
+  circulating artefact is <strong>7.9071&nbsp;±&nbsp;0.047&nbsp;dB</strong>, E<sub>n</sub>&nbsp;=&nbsp;−0.22
+  against the four-site consensus. <strong>Compatible.</strong> If a verification fails next month, the
+  platform will name this result among the suspects — or clear it.</p></div>
+    <div class="numbers" style="margin:22px 0 0;max-width:760px"><div class="numbers-row" style="grid-template-columns:repeat(4,1fr)"><div class="stat"><div class="stat-n">± 0.047 dB</div><div class="stat-l">expanded uncertainty (k=2)</div></div><div class="stat"><div class="stat-n">−0.22</div><div class="stat-l">E_n vs consensus</div></div><div class="stat"><div class="stat-n">compatible</div><div class="stat-l">standing</div></div><div class="stat"><div class="stat-n">4</div><div class="stat-l">sites agreeing</div></div></div></div>
+  </div>
+</section>
+<div style="display:grid;place-items:center;color:var(--border-strong)"><svg width="16" height="34" viewBox="0 0 16 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v29M2 25l6 6 6-6"/></svg></div><section class="psec">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div class="phero-letter" style="width:44px;height:44px;font-size:1.25rem;border-radius:12px">E</div>
+      <div>
+        <a href="projects/cableanalytics.html" style="font-family:var(--mono);font-weight:620;font-size:1.1rem">cableanalytics</a>
+        <div style="font-size:.8rem;color:var(--text-3)">Meanwhile, a cable that does not exist</div>
+      </div>
+    </div>
+    <div class="prose"><p>A branch joins the story: sample <code>S0005</code> exists only as an extrusion-line record —
+  alloy, diameters, foaming, line speed. The production model predicts its loss coefficients with 90&nbsp;%
+  intervals. No measurement. It will enter the final stage on equal terms with the measured cable, carrying
+  its intervals as uncertainty — and the twin will find that <em>that</em> design fails by 0.02&nbsp;dB
+  before it is ever extruded.</p></div>
+    
+  </div>
+</section>
+<div style="display:grid;place-items:center;color:var(--border-strong)"><svg width="16" height="34" viewBox="0 0 16 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v29M2 25l6 6 6-6"/></svg></div><section class="psec">
+  <div class="wrap">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <div class="phero-letter" style="width:44px;height:44px;font-size:1.25rem;border-radius:12px">G</div>
+      <div>
+        <a href="projects/linktwin.html" style="font-family:var(--mono);font-weight:620;font-size:1.1rem">linktwin</a>
+        <div style="font-size:.8rem;color:var(--text-3)">The payoff: a harness that does not exist yet</div>
+      </div>
+    </div>
+    <div class="prose"><p>The harness is described in eleven lines of TOML: header — twelve metres of <em>this archived
+  cable</em>, trust and hashes verified from the sidecar — header, at 105&nbsp;°C. The twin rescales the
+  measured physics to the new length and temperature, cascades all four ports, and hands the result to the
+  same evaluator the physical sample faced.</p></div>
+    <figure class="fig"><div class="img"><img src="./assets/img/p/g-eye.png" loading="lazy" alt="Predicted pulse response and eye diagrams for the assembled link."></div><figcaption>The receiver's view of a link that exists only in the twin: closed raw, open equalised — with the worst-case bound drawn at the decision instants.</figcaption></figure><div class="numbers" style="margin:22px 0 0;max-width:760px"><div class="numbers-row" style="grid-template-columns:repeat(4,1fr)"><div class="stat"><div class="stat-n">PASS</div><div class="stat-l">at 105 °C, +0.28 dB</div></div><div class="stat"><div class="stat-n">318 mV</div><div class="stat-l">equalised eye</div></div><div class="stat"><div class="stat-n">19.1 m</div><div class="stat-l">maximum reach</div></div><div class="stat"><div class="stat-n">0.98</div><div class="stat-l">P(pass), 200-draw Monte Carlo</div></div></div></div>
+  </div>
+</section>
+<div style="display:grid;place-items:center;color:var(--border-strong)"><svg width="16" height="34" viewBox="0 0 16 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1v29M2 25l6 6 6-6"/></svg></div>
+<section class="psec tinted">
+  <div class="wrap">
+    <div class="sec-kicker">The point</div>
+    <h2 style="max-width:24ch">The question changed</h2>
+    <div class="prose">
+      <p style="font-size:1.12rem">It began as <em>"what did this cable measure?"</em> — one file, zero
+      guarantees. Seven layers later it is <em>"will the link work before the harness exists?"</em> —
+      answered with a margin, an eye diagram, a maximum reach and a probability, every step of the chain
+      traceable back to a sealed archive.</p>
+      <p>That chain — not any single package — is what this toolchain is.</p>
+    </div>
+    <div class="hero-cta" style="margin-top:26px">
+      <a class="btn btn-primary" href="index.html#projects">The seven case studies</a>
+      <a class="btn btn-ghost" href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">The toolchain on GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="./index.html" style="margin-bottom:12px">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+            <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span>HF Cable Toolchain</span>
+        </a>
+        <p style="color:var(--text-3);font-size:.88rem;max-width:42ch">
+          Measurement evaluation, laboratory automation, impedance reconstruction, production analytics,
+          multi-site metrology and a full-link digital twin for automotive Ethernet cables.
+        </p>
+      </div>
+      <div>
+        <h5>Projects</h5>
+        <div class="foot-links"><a href="./projects/cablecheck.html">A &middot; cablecheck</a>
+<a href="./projects/labauto.html">B &middot; labauto</a>
+<a href="./projects/shieldeval.html">C &middot; shieldeval</a>
+<a href="./projects/zprofile.html">D &middot; zprofile</a>
+<a href="./projects/cableanalytics.html">E &middot; cableanalytics</a>
+<a href="./projects/labplatform.html">F &middot; labplatform</a>
+<a href="./projects/linktwin.html">G &middot; linktwin</a></div>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <div class="foot-links">
+          <a href="https://github.com/anilram30" rel="noopener">GitHub profile</a>
+          <a href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">Toolchain hub</a>
+          <a href="./system.html">From measurement to design</a>
+          <a href="mailto:sreeramanil30@gmail.com">sreeramanil30@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sreeram Anil · Released under the MIT licence</span>
+      <span>All measurement data on this site is synthetic</span>
+    </div>
+  </div>
+</footer>
+<script src="./assets/js/site.js"></script>
+</body>
+</html>

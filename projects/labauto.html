@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>labauto — HF Cable Toolchain</title>
+<meta name="description" content="Runs a high-frequency cable laboratory as a programmable, traceable, self-validating measurement system.">
+<meta name="author" content="Sreeram Anil">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M6 20c4-9 6-9 10 0s6 9 10 0' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../index.html">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+        <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span>HF Cable Toolchain<br><span class="brand-sub">Sreeram Anil</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#pipeline">Architecture</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../system.html">The whole system</a>
+      <a href="../index.html#network">Network</a>
+      <a href="../index.html#reports">Reports</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2 12h2M20 12h2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://github.com/anilram30" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0C17.6 4.7 18.6 5 18.6 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
+        <span class="gh-label">GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+<header class="phero">
+  <div class="wrap">
+    <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#projects">Projects</a><span class="sep">/</span><span>labauto</span></div>
+    <div class="phero-top">
+      <div class="phero-letter">B</div>
+      <div style="flex:1"><h1>labauto</h1><div class="phero-role">Project B · The laboratory as a programmable system</div></div>
+      <span class="pidx">02 / 07</span>
+    </div>
+    <p class="phero-tag">Runs a high-frequency cable laboratory as a programmable, traceable, self-validating measurement system.</p>
+    <div class="chips"><span class="chip"><b>4,100</b>lines of source</span><span class="chip"><b>25</b>tests</span><span class="chip"><b>10</b>job states in the engine</span><span class="chip"><b>4</b>instrument roles</span><span class="chip"><b>SHA-256</b>sealed archives</span><span class="chip"><b>12 pp</b>technical report</span></div>
+    <div class="hero-cta" style="margin-bottom:0">
+      <a class="btn btn-primary" href="https://github.com/anilram30/labauto" rel="noopener">Source on GitHub</a>
+      <a class="btn btn-ghost" href="../reports/labauto.pdf">Technical report (12 pages)</a>
+    </div>
+  </div>
+</header>
+<section class="psec"><div class="wrap"><div class="sec-kicker">Problem</div><h2>The problem</h2><div class="prose">
+<p>Most laboratory automation is a script: send SCPI commands, save whatever comes back. The script does
+not know whether the calibration expired yesterday, whether the operator scanned the wrong sample,
+whether the chamber had actually settled, or whether the data it just saved is physically plausible. Six
+months later, nobody can prove what the numbers in the database actually were measured under.</p>
+<p>The question this project answers: what does it take for a laboratory to <strong>refuse</strong> a bad
+measurement before it happens, <strong>validate</strong> every result before accepting it, and
+<strong>reproduce</strong> any result from its archive alone?</p>
+</div></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">System</div><h2>What was built</h2><div class="prose"><p>An operating layer for the laboratory: procedures declare what a
+measurement <em>is</em>; a journalled engine executes them through gates, validation and archival.</p></div><div class="flow"><div class="flow-io"><b>Barcode + procedure</b><span>GS1-128 or internal scheme, check digits verified · procedure TOML, SHA-256 hashed</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-hi"><b>Laboratory engine</b><span>a journalled state machine — every transition recorded</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-split"><div><b>VNA driver</b><span>Keysight / R&S dialects</span></div><div><b>Climate chamber</b><span>two-node thermal model</span></div><div><b>DMM · scanner</b><span>4-wire, barcode queue</span></div></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Calibration gate</b><span>age, temperature drift, kit due date, verification against a check standard</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-step"><b>Validation</b><span>grid · passivity · reciprocity · trace noise · length vs registry · loss vs DC resistance · termination</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-split"><div><b>Accept</b><span>trusted</span></div><div><b>Repeat</b><span>flagged, re-measured</span></div><div><b>Quarantine</b><span>rejected, kept as evidence</span></div></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-hi"><b>Sealed archive</b><span>raw data + full metadata sidecar, every file hashed into a manifest</span></div><div class="flow-arrow"><svg viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 1v17M2 14l5 5 5-5"/></svg></div><div class="flow-out"><b>Analysis + database</b><span>cablecheck always; zprofile and cableanalytics when installed</span></div></div><div class="spec"><div class="spec-col"><h5>Takes</h5><ul><li>A scanned barcode and a sample registry</li><li>A procedure file: sweep, calibration policy, checks, downstream analysis</li><li>Instruments over socket, VISA — or the built-in simulators</li><li>A climate chamber profile, for temperature sweeps</li></ul></div><div class="spec-col"><h5>Produces</h5><ul><li>A sealed job directory: raw files, sidecar, hashed manifest</li><li>A trusted / flagged / rejected decision with recorded reasons</li><li>Rows in the laboratory database, refusals included</li><li>Bit-exact replay of any archived job, months later</li></ul></div></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Engineering</div><h2>The hard part</h2><div class="prose">
+<p>The hard part is <strong>measurement-aware execution</strong>: the engine has to know enough physics to
+distrust its own instruments. Is the trace noise consistent with the IF bandwidth? Does the electrical
+length match the length on the sample's registry entry? Is the high-frequency loss consistent with the
+DC loop resistance the ohmmeter just read? Is the far end actually terminated, or did someone forget?
+Each check is cheap; together they are the difference between a database and a pile of files.</p>
+<p>The second hard part is doing all of this <strong>without a laboratory</strong>. The simulators are
+behavioural models with real error physics — a VNA whose residual errors depend on calibration age and
+temperature drift, a chamber with a two-node thermal model, cables whose defects and losses respond to
+temperature — so a climate sweep that would take hours on the bench runs in seconds in the test suite,
+and the gates can be tested by <em>making</em> measurements go wrong on demand.</p>
+</div><figure class="fig"><div class="img"><img src="../assets/img/p/b-states.png" loading="lazy" alt="The job state machine from created through gates, measurement, validation and archival to done."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 01</span> &nbsp;<b>The engine:</b> every job walks this journalled state machine; refusals and quarantines are states, not error messages.</figcaption></figure></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Evidence</div><h2>Checked against ground truth</h2><p class="lede-line">The tests exercise the laboratory the way reality would — by breaking it.</p><table class="results-tbl"><thead><tr><th>What was checked</th><th>Result</th></tr></thead><tbody><tr><td>Stale calibration, failed verification, wrong environment</td><td>job refused at the gate, before measuring</td></tr><tr><td>Defective and mislabelled samples</td><td>caught by validation; flagged or quarantined</td></tr><tr><td>Sealed archive replayed months later</td><td>bit-exact reproduction of the sealed result</td></tr><tr><td>Manifest tamper check</td><td>any modified file named on verify</td></tr><tr><td>Barcode check digits (GS1 + internal mod-36)</td><td>corrupt codes rejected, round trip exact</td></tr><tr><td>Full climate sweep in simulation</td><td>seconds in the test suite, hours on a bench</td></tr></tbody></table><div class="figrow"><figure class="fig"><div class="img"><img src="../assets/img/p/b-chamber.png" loading="lazy" alt="Simulated chamber air and sample temperature during a sweep with settling bands."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 02</span> &nbsp;<b>The chamber knows the sample lags the air:</b> two-node thermal model, with settling criteria the engine actually waits for.</figcaption></figure><figure class="fig"><div class="img"><img src="../assets/img/p/b-calibration.png" loading="lazy" alt="Calibration verification traces against the check standard's certificate bands."></div><figcaption><span style="font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;color:var(--accent)">FIG. 03</span> &nbsp;<b>Trust is checked, not assumed:</b> verification against a check standard decides whether the calibration may be used.</figcaption></figure></div></div></section><section class="psec"><div class="wrap"><div class="sec-kicker">Declared limits</div><h2>What it does not claim</h2><p class="lede-line">From the report's own limitations section:</p><ul class="limits">
+<li>Real-hardware paths (VISA, socket SCPI) are implemented but exercised only against the simulators here.</li>
+<li>The simulators are behavioural, not electromagnetic: they reproduce error <em>structure</em>, not any particular instrument.</li>
+<li>One laboratory only — cross-site comparison is deliberately the next project's job.</li>
+</ul></div></section><section class="psec tinted"><div class="wrap"><div class="sec-kicker">Context</div><h2>Where it sits in the toolchain</h2><div class="prose">
+<p>This is the layer that turns <a href="cablecheck.html">cablecheck</a> from a tool you run into a
+laboratory that runs itself. Its sealed archives are exactly what <a href="labplatform.html">labplatform</a>
+ingests to compare sites, and a <a href="linktwin.html">linktwin</a> harness can name one of its job
+directories as a cable source — length, temperature, trust and hashes come from the sidecar, and the
+manifest is verified before the data is touched.</p>
+</div></div></section>
+<div class="wrap pn">
+  <a href="cablecheck.html"><span class="dir">← Previous</span><span class="name">A · cablecheck</span></a>
+  <a href="shieldeval.html" class="next"><span class="dir">Next →</span><span class="name">C · shieldeval</span></a>
+</div>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="../index.html" style="margin-bottom:12px">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="7" fill="var(--accent)"/>
+            <path d="M6 20c4-9 6-9 10 0s6 9 10 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span>HF Cable Toolchain</span>
+        </a>
+        <p style="color:var(--text-3);font-size:.88rem;max-width:42ch">
+          Measurement evaluation, laboratory automation, impedance reconstruction, production analytics,
+          multi-site metrology and a full-link digital twin for automotive Ethernet cables.
+        </p>
+      </div>
+      <div>
+        <h5>Projects</h5>
+        <div class="foot-links"><a href="../projects/cablecheck.html">A &middot; cablecheck</a>
+<a href="../projects/labauto.html">B &middot; labauto</a>
+<a href="../projects/shieldeval.html">C &middot; shieldeval</a>
+<a href="../projects/zprofile.html">D &middot; zprofile</a>
+<a href="../projects/cableanalytics.html">E &middot; cableanalytics</a>
+<a href="../projects/labplatform.html">F &middot; labplatform</a>
+<a href="../projects/linktwin.html">G &middot; linktwin</a></div>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <div class="foot-links">
+          <a href="https://github.com/anilram30" rel="noopener">GitHub profile</a>
+          <a href="https://github.com/anilram30/hf-cable-toolchain" rel="noopener">Toolchain hub</a>
+          <a href="../system.html">From measurement to design</a>
+          <a href="mailto:sreeramanil30@gmail.com">sreeramanil30@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sreeram Anil · Released under the MIT licence</span>
+      <span>All measurement data on this site is synthetic</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

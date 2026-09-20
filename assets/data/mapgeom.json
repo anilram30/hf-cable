@@ -1,0 +1,50 @@
+{
+ "w": 1000.0,
+ "h": 448.7,
+ "sites": [
+  {
+   "id": "LAB1",
+   "n": 1,
+   "city": "Roth",
+   "country": "Germany",
+   "lat": 49.245,
+   "lon": 11.092,
+   "role": "Reference laboratory",
+   "x": 160.8,
+   "y": 145.9
+  },
+  {
+   "id": "LAB2",
+   "n": 2,
+   "city": "Kitzingen",
+   "country": "Germany",
+   "lat": 49.74,
+   "lon": 10.16,
+   "role": "Measurement site",
+   "x": 154.9,
+   "y": 142.7
+  },
+  {
+   "id": "LAB3",
+   "n": 3,
+   "city": "Jelenia G\u00f3ra",
+   "country": "Poland",
+   "lat": 50.904,
+   "lon": 15.719,
+   "role": "Measurement site",
+   "x": 190.5,
+   "y": 135.2
+  },
+  {
+   "id": "LAB4",
+   "n": 4,
+   "city": "Changzhou",
+   "country": "China",
+   "lat": 31.811,
+   "lon": 119.974,
+   "role": "Measurement site",
+   "x": 858.8,
+   "y": 257.6
+  }
+ ]
+}

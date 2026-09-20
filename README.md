@@ -1,10 +1,10 @@
-# anilram30.github.io
+# hf-cable
 
 The public site for the **[HF Cable Toolchain](https://github.com/anilram30/hf-cable-toolchain)** —
 seven engineering packages that take a high-frequency automotive Ethernet cable from a raw
 network-analyser measurement to a predicted link.
 
-**Live at [anilram30.github.io](https://anilram30.github.io)**
+**Live at [anilram30.github.io/hf-cable](https://anilram30.github.io/hf-cable/)**
 
 ## What is here
 
